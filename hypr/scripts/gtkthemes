@@ -5,11 +5,11 @@
 ## Set GTK Themes, Icons, Cursor and Fonts
 ## Edited by @yurihikari
 
-THEME='Arc-Dark+default'
+THEME='Arc-Dark'
 ICONS='Tela-circle-blue-dark'
 FONT='Noto Sans 10'
-CURSOR='Breeze'
-CURSOR_SIZE='24'
+CURSOR='BreezeX-Dark'
+CURSOR_SIZE='30'
 
 SCHEMA='gsettings set org.gnome.desktop.interface'
 

@@ -53,5 +53,5 @@ alias ip='ip -color'
 # others
 alias pipes='bash -c $HOME/.pipes'
 alias icat='kitty +kitten icat'
-alias fm='dolphin .'
-alias owofetch='neofetch --source /home/wm/.config/neofetch/Nyarch.png'
+alias fm='nemo .'
+

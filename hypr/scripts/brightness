@@ -41,6 +41,7 @@ inc_backlight() {
 
 # Decrease brightness
 dec_backlight() {
+  # light -N 5
 	light -U 5 && get_icon
 }
 
