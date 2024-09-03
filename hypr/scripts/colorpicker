@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
+
 #color=$(grim -g "`slurp -b 20262C00 -p`" -t ppm - | convert - -format '%[pixel:p{0,0}]' txt:- | tail -n1 | cut -d' ' -f4)
+
 # color take the result of the command hyprpicker -a 
 color=$(hyprpicker -a)
 image=/tmp/${color}.png

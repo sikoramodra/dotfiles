@@ -1,10 +1,5 @@
 #!/usr/bin/env bash
 
-## Copyright (C) 2020-2023 Aditya Shakya <adi1090x@gmail.com>
-##
-## Set GTK Themes, Icons, Cursor and Fonts
-## Edited by @yurihikari
-
 THEME='Arc-Dark'
 ICONS='Tela-circle-blue-dark'
 FONT='Noto Sans 10'
