@@ -51,8 +51,20 @@ shotwin () {
 }
 
 shotarea () {
-	cd ${dir} && grim -g "$(slurp -b 20262CCC -c B4A1DBff -s B4A1DB0D -w 2 && sleep 0.3)" - | tee "$file" | wl-copy
-	notify_view
+	cd ${dir}
+
+  # Run slurp and capture the selection geometry
+  geometry=$(slurp -b 20262CCC -c B4A1DBff -s B4A1DB0D -w 2 && sleep 0.3)
+  
+  # Check if slurp was successful
+  if [[ $? -eq 0 ]]; then
+    # If successful, use the geometry in grim and continue
+    grim -g "$geometry" - | tee "$file" | wl-copy
+    notify_view
+  else
+    # If slurp was canceled, notify and do nothing further
+    ${notify_cmd_shot} "Screenshot Cancelled."
+  fi
 }
 
 if [[ ! -d "$dir" ]]; then
