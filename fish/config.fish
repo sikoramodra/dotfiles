@@ -53,5 +53,6 @@ alias ip='ip -color'
 # others
 alias pipes='bash -c $HOME/.pipes'
 alias icat='kitty +kitten icat'
+alias neofetch='fastfetch'
 alias fm='nemo .'
 
