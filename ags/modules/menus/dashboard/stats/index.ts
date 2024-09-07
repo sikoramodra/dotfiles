@@ -123,8 +123,8 @@ const Stats = () => {
                                         on_primary_click: terminal.bind("value").as(term => {
                                             return () => {
                                                 App.closeWindow("dashboardmenu");
-                                                Utils.execAsync(`bash -c "${term} -e btop"`).catch(
-                                                    (err) => `Failed to open btop: ${err}`,
+                                                Utils.execAsync(`bash -c "${term} -e gotop"`).catch(
+                                                    (err) => `Failed to open gotop: ${err}`,
                                                 );
                                             }
                                         }),
@@ -137,8 +137,8 @@ const Stats = () => {
                                         on_primary_click: terminal.bind("value").as(term => {
                                             return () => {
                                                 App.closeWindow("dashboardmenu");
-                                                Utils.execAsync(`bash -c "${term} -e btop"`).catch(
-                                                    (err) => `Failed to open btop: ${err}`,
+                                                Utils.execAsync(`bash -c "${term} -e gotop"`).catch(
+                                                    (err) => `Failed to open gotop: ${err}`,
                                                 );
                                             }
                                         }),
@@ -225,8 +225,8 @@ const Stats = () => {
                                 on_primary_click: terminal.bind("value").as(term => {
                                     return () => {
                                         App.closeWindow("dashboardmenu");
-                                        Utils.execAsync(`bash -c "${term} -e btop"`).catch(
-                                            (err) => `Failed to open btop: ${err}`,
+                                        Utils.execAsync(`bash -c "${term} -e gotop"`).catch(
+                                            (err) => `Failed to open gotop: ${err}`,
                                         );
                                     }
                                 }),
@@ -239,8 +239,8 @@ const Stats = () => {
                                 on_primary_click: terminal.bind("value").as(term => {
                                     return () => {
                                         App.closeWindow("dashboardmenu");
-                                        Utils.execAsync(`bash -c "${term} -e btop"`).catch(
-                                            (err) => `Failed to open btop: ${err}`,
+                                        Utils.execAsync(`bash -c "${term} -e gotop"`).catch(
+                                            (err) => `Failed to open gotop: ${err}`,
                                         );
                                     }
                                 }),
@@ -274,8 +274,8 @@ const Stats = () => {
                                 on_primary_click: terminal.bind("value").as(term => {
                                     return () => {
                                         App.closeWindow("dashboardmenu");
-                                        Utils.execAsync(`bash -c "${term} -e btop"`).catch(
-                                            (err) => `Failed to open btop: ${err}`,
+                                        Utils.execAsync(`bash -c "${term} -e gotop"`).catch(
+                                            (err) => `Failed to open gotop: ${err}`,
                                         );
                                     }
                                 }),
@@ -288,8 +288,8 @@ const Stats = () => {
                                 on_primary_click: terminal.bind("value").as(term => {
                                     return () => {
                                         App.closeWindow("dashboardmenu");
-                                        Utils.execAsync(`bash -c "${term} -e btop"`).catch(
-                                            (err) => `Failed to open btop: ${err}`,
+                                        Utils.execAsync(`bash -c "${term} -e gotop"`).catch(
+                                            (err) => `Failed to open gotop: ${err}`,
                                         );
                                     }
                                 }),
@@ -322,8 +322,8 @@ const Stats = () => {
                                 on_primary_click: terminal.bind("value").as(term => {
                                     return () => {
                                         App.closeWindow("dashboardmenu");
-                                        Utils.execAsync(`bash -c "${term} -e btop"`).catch(
-                                            (err) => `Failed to open btop: ${err}`,
+                                        Utils.execAsync(`bash -c "${term} -e gotop"`).catch(
+                                            (err) => `Failed to open gotop: ${err}`,
                                         );
                                     }
                                 }),
@@ -336,8 +336,8 @@ const Stats = () => {
                                 on_primary_click: terminal.bind("value").as(term => {
                                     return () => {
                                         App.closeWindow("dashboardmenu");
-                                        Utils.execAsync(`bash -c "${term} -e btop"`).catch(
-                                            (err) => `Failed to open btop: ${err}`,
+                                        Utils.execAsync(`bash -c "${term} -e gotop"`).catch(
+                                            (err) => `Failed to open gotop: ${err}`,
                                         );
                                     }
                                 }),
