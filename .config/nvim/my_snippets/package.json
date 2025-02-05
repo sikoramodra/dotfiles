@@ -1,13 +1,73 @@
 {
-	"name": "example-snippets",
-	"contributes": {
-		"snippets": [
-			{
-				"language": [
-					"qml"
-				],
-				"path": "./qml.json"
-			}
-		]
-	}
+  "name": "my_snippets",
+  "contributes": {
+    "snippets": [
+      {
+        "language": "go",
+        "path": "go.json"
+      },
+      {
+        "language": [
+          "shellscript",
+          "shell",
+          "sh",
+          "zsh"
+        ],
+        "path": "shell.json"
+      },
+      {
+        "language": [
+          "markdown",
+          "rmd"
+        ],
+        "path": "markdown.json"
+      },
+      {
+        "language": [
+          "html",
+          "jade",
+          "pug",
+          "eruby",
+          "javascriptreact",
+          "htmldjango",
+          "astro",
+          "blade"
+        ],
+        "path": "html.json"
+      },
+      {
+        "language": [
+          "javascript",
+          "javascriptreact",
+          "vue",
+          "svelte"
+        ],
+        "path": "javascript.json"
+      },
+      {
+        "language": "jsdoc",
+        "path": "jsdoc.json"
+      },
+      {
+        "language": "javascriptreact",
+        "path": "react.json"
+      },
+      {
+        "language": "svelte",
+        "path": "svelte.json"
+      },
+      {
+        "language": "yaml",
+        "path": "docker-compose.json"
+      },
+      {
+        "language": "dockerfile",
+        "path": "docker_file.json"
+      },
+      {
+        "language": "loremipsum",
+        "path": "loremipsum.json"
+      }
+    ]
+  }
 }

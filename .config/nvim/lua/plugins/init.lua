@@ -2,9 +2,11 @@ return {
   {
     "stevearc/conform.nvim",
     event = "BufWritePre", -- uncomment for format on save
-    config = function()
-      require "configs.conform"
-    end,
+    opts = require "configs.conform",
+  },
+  {
+    "christoomey/vim-tmux-navigator",
+    lazy = false,
   },
   {
     "hrsh7th/nvim-cmp",
@@ -24,10 +26,14 @@ return {
       -- snippets engine
       {
         "L3MON4D3/LuaSnip",
-        config = function()
-          require("luasnip.loaders.from_vscode").lazy_load {
-            paths = "~/.config/nvim/my_snippets",
-          }
+        dependencies = "rafamadriz/friendly-snippets",
+        build = "make install_jsregexp",
+        -- cd ~/.local/share/nvim/lazy/LuaSnip
+        -- make install_jsregexp
+        opts = { history = true, updateevents = "TextChanged,TextChangedI" },
+        config = function(_, opts)
+          require("luasnip").config.set_config(opts)
+          require "nvchad.configs.luasnip"
         end,
       },
 
@@ -52,7 +58,6 @@ return {
   {
     "neovim/nvim-lspconfig",
     config = function()
-      require("nvchad.configs.lspconfig").defaults()
       require "configs.lspconfig"
     end,
   },
@@ -60,9 +65,67 @@ return {
     "williamboman/mason.nvim",
     opts = {
       ensure_installed = {
-        "clangd",
-        "clang-format",
-        "cmake-language-server",
+        -- "clangd",
+        -- "clang-format",
+        -- "cmake-language-server",
+        "css-lsp",
+        "docker-compose-language-service",
+        "dockerfile-language-server",
+        "json-lsp",
+        -- "jsonlint",
+        "prettier",
+        "eslint-lsp",
+        "html-lsp",
+        -- "htmlbeautifier",
+        -- "htmlhint",
+        "beautysh",
+        "bash-language-server",
+        "shfmt",
+        -- "standardjs",
+        -- "ts-standard",
+        "svelte-language-server",
+        "tailwindcss-language-server",
+        "hyprls",
+        "typescript-language-server",
+        "gopls",
+        "gofumpt",
+        -- "goimports",
+        "goimports-reviser",
+        "golangci-lint",
+        "golangci-lint-langserver",
+        "golines",
+        -- "gomodifytags",
+        -- "gotests",
+        -- "iferr",
+      },
+    },
+  },
+  {
+    "olexsmir/gopher.nvim",
+    ft = "go",
+    build = function()
+      vim.cmd [[silent! GoInstallDeps]]
+    end,
+    opts = {
+      commands = {
+        go = "go",
+        gomodifytags = "gomodifytags",
+        gotests = "gotests",
+        impl = "impl",
+        iferr = "iferr",
+        dlv = "dlv",
+      },
+      gotests = {
+        -- gotests doesn't have template named "default" so this plugin uses "default" to set the default template
+        template = "default",
+        -- path to a directory containing custom test code templates
+        template_dir = nil,
+        -- switch table tests from using slice to map (with test name for the key)
+        -- works only with gotests installed from develop branch
+        named = false,
+      },
+      gotag = {
+        transform = "snakecase",
       },
     },
   },
@@ -70,15 +133,40 @@ return {
     "nvim-treesitter/nvim-treesitter",
     opts = {
       ensure_installed = {
-        "bash",
-        "c",
-        "cmake",
+        -- "c",
+        -- "cmake",
         "comment",
-        "cpp",
-        "fish",
+        -- "cpp",
         "gitignore",
-        "qmljs",
+        -- "qmljs",
+        "css",
+        "dockerfile",
+        "typescript",
+        "tsx",
+        "html",
+        "json",
+        "javascript",
+        "svelte",
+        "hyprlang",
+        "fish",
+        "bash",
+        "go",
+        "gomod",
+        "gosum",
+        "gotmpl",
+        "gowork",
       },
     },
+  },
+  {
+    "windwp/nvim-ts-autotag",
+    dependencies = "nvim-treesitter/nvim-treesitter",
+    config = function()
+      require("nvim-ts-autotag").setup {
+        enable = true,
+      }
+    end,
+    lazy = true,
+    event = "VeryLazy",
   },
 }
