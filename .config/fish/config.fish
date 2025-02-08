@@ -1,6 +1,6 @@
 set -U fish_greeting ""
 set -gx EDITOR nvim
-set -gx BROWSER brave
+set -gx BROWSER zen-browser
 set -gx Lang en_US.UTF-8
 
 # ⌁⌁⌁
@@ -51,8 +51,10 @@ alias fgrep='fgrep --color=auto'
 alias ip='ip -color'
 
 # others
-alias pipes='bash -c $HOME/.pipes'
+alias pipes='pipes.sh -p 5 -f 40 R -r 2000'
 alias icat='kitty +kitten icat'
 alias neofetch='fastfetch'
 alias fm='nemo .'
+
+zoxide init --cmd cd fish | source
 

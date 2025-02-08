@@ -203,7 +203,7 @@
   "theme.font.weight": 600,
   "bar.workspaces.show_icons": false,
   "theme.bar.menus.opacity": 100,
-  "theme.bar.transparent": false,
+  "theme.bar.transparent": true,
   "theme.bar.buttons.y_margins": "0.2em",
   "theme.bar.buttons.spacing": "0.25em",
   "theme.bar.buttons.padding_x": "0.7rem",
