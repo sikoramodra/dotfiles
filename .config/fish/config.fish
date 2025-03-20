@@ -32,6 +32,10 @@ function cheatsh --description "Streamline cheat.sh call"
     curl cheat.sh/$argv
 end
 
+function tldr --description "Streamline cheat.sh call"
+    curl cheat.sh/$argv
+end
+
 # log into fish when switched into root
 alias su='su -s /bin/fish'
 
