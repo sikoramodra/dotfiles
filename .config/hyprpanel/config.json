@@ -50,14 +50,7 @@
             "scroll_wrap_workspaces": true,
             "scroll_include_inactive": true,
             "enable_workspace_names": false,
-            "pinned": [
-              1,
-              2,
-              3,
-              4,
-              5,
-              6
-            ],
+            "pinned": [1, 2, 3, 4, 5, 6],
             "ignore_windows": []
           }
         },
@@ -95,10 +88,7 @@
               "STATUS_ACTIVE"
             ],
             "auto_hide_delay": "4s",
-            "pinned": [
-              "nm-applet",
-              "chrome_status_icon_1"
-            ],
+            "pinned": ["nm-applet", "chrome_status_icon_1"],
             "modules": [
               {
                 "power": {
@@ -203,7 +193,7 @@
   "theme.font.weight": 600,
   "bar.workspaces.show_icons": false,
   "theme.bar.menus.opacity": 100,
-  "theme.bar.transparent": true,
+  "theme.bar.transparent": false,
   "theme.bar.buttons.y_margins": "0.2em",
   "theme.bar.buttons.spacing": "0.25em",
   "theme.bar.buttons.padding_x": "0.7rem",
@@ -224,14 +214,8 @@
   "theme.bar.buttons.background_hover_opacity": 100,
   "bar.layouts": {
     "0": {
-      "left": [
-        "dashboard",
-        "workspaces",
-        "windowtitle"
-      ],
-      "middle": [
-        "media"
-      ],
+      "left": ["dashboard", "workspaces", "windowtitle"],
+      "middle": ["media"],
       "right": [
         "volume",
         "network",
@@ -243,14 +227,8 @@
       ]
     },
     "1": {
-      "left": [
-        "dashboard",
-        "workspaces",
-        "windowtitle"
-      ],
-      "middle": [
-        "media"
-      ],
+      "left": ["dashboard", "workspaces", "windowtitle"],
+      "middle": ["media"],
       "right": [
         "volume",
         "network",
@@ -262,14 +240,8 @@
       ]
     },
     "2": {
-      "left": [
-        "dashboard",
-        "workspaces",
-        "windowtitle"
-      ],
-      "middle": [
-        "media"
-      ],
+      "left": ["dashboard", "workspaces", "windowtitle"],
+      "middle": ["media"],
       "right": [
         "volume",
         "network",
@@ -293,7 +265,7 @@
   "menus.dashboard.shortcuts.left.shortcut1.icon": "󰖟",
   "theme.notification.opacity": 100,
   "theme.bar.buttons.opacity": 100,
-  "theme.osd.opacity": 70,
+  "theme.osd.opacity": 100,
   "menus.dashboard.shortcuts.right.shortcut3.command": "bash -c \"$HOME/.config/hypr/scripts/screenshot --area\"",
   "menus.dashboard.shortcuts.right.shortcut1.command": "bash -c \"$HOME/.config/hypr/scripts/colorpicker\"",
   "menus.dashboard.powermenu.sleep": "bash -c \"hyprlock & sleep 0.4 && systemctl suspend\"",
@@ -683,9 +655,16 @@
   "theme.bar.buttons.modules.weather.enableBorder": false,
   "menus.dashboard.stats.enabled": false,
   "theme.bar.buttons.borderSize": "0.1em",
-  "bar.notifications.hideCountWhenZero": true,
+  "bar.notifications.hideCountWhenZero": false,
   "menus.media.hideAuthor": false,
   "menus.media.hideAlbum": true,
   "menus.media.displayTime": true,
-  "theme.bar.menus.menu.power.scaling": 90
+  "theme.bar.menus.menu.power.scaling": 90,
+  "bar.workspaces.ignored": "-\\d+",
+  "theme.bar.menus.enableShadow": true,
+  "theme.bar.enableShadow": false,
+  "bar.clock.format": "%a %b %d  %H:%M:%S",
+  "wallpaper.enable": false,
+  "theme.bar.menus.monochrome": false
 }
+
