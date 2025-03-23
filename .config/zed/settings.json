@@ -108,6 +108,7 @@
     },
     "Go": {
       "tab_size": 4,
+      "format_on_save": "on",
       "language_servers": ["gopls", "golangci-lint"]
     },
     "Shell Script": {
