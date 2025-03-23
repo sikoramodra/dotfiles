@@ -2,7 +2,7 @@
   "features": {
     "edit_prediction_provider": "zed"
   },
-  // TODO: language/lsp, diagnostics, ?disable rounded corners
+  // TODO: language/lsp, diagnostics
   "assistant": {
     "button": true,
     "default_model": {
@@ -14,12 +14,20 @@
   "hard_tabs": false,
   "base_keymap": "VSCode",
   "vim_mode": true,
+  "vim": {
+    "use_system_clipboard": "always"
+  },
   // "relative_line_numbers": true,
   "telemetry": {
     "diagnostics": false,
     "metrics": false
   },
   "lsp": {
+    // "eslint": {
+    //   "initialization_options": {
+    //     "command": ["eslint", ""]
+    //   }
+    // },
     "golangci-lint": {
       "initialization_options": {
         "command": [
@@ -75,19 +83,28 @@
     "git_status": false,
     "activate_on_close": "left_neighbour"
   },
+  "format_on_save": "on",
   "preferred_line_length": 80,
   "wrap_guides": [80, 100],
   "tab_size": null,
   "languages": {
     "JSONC": {
-      "tab_size": 2
+      "tab_size": 2,
+      "formatter": "prettier"
     },
     "JSON": {
-      "tab_size": 2
+      "tab_size": 2,
+      "formatter": "prettier"
     },
     "JavaScript": {
       "tab_size": 2,
-      "formatter": "prettier"
+      "formatter": "prettier",
+      // "language_servers": ["typescript-language-server", "eslint"],
+      "code_actions_on_format": {
+        "source.fixAll": true,
+        "source.fixAll.eslint": true,
+        "source.organizeImports.eslint": true
+      }
     },
     "Go": {
       "tab_size": 4,
@@ -95,7 +112,6 @@
     },
     "Shell Script": {
       "tab_size": 4,
-      "format_on_save": "on",
       "formatter": {
         "external": {
           "command": "shfmt",
