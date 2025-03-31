@@ -6,10 +6,16 @@
     }
   },
   {
+    "context": "vim_mode == normal && !menu",
+    "bindings": {
+      "ctrl-e": "file_finder::Toggle"
+    }
+  },
+  {
     "context": "Terminal",
     "bindings": {
       "ctrl-`": "workspace::ToggleBottomDock",
-      "ctrl-n": "workspace::NewTerminal",
+      "ctrl-t": "workspace::NewTerminal",
       "ctrl-w": "pane::CloseActiveItem"
     }
   }
