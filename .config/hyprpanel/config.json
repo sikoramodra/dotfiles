@@ -50,7 +50,14 @@
             "scroll_wrap_workspaces": true,
             "scroll_include_inactive": true,
             "enable_workspace_names": false,
-            "pinned": [1, 2, 3, 4, 5, 6],
+            "pinned": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
             "ignore_windows": []
           }
         },
@@ -88,7 +95,10 @@
               "STATUS_ACTIVE"
             ],
             "auto_hide_delay": "4s",
-            "pinned": ["nm-applet", "chrome_status_icon_1"],
+            "pinned": [
+              "nm-applet",
+              "chrome_status_icon_1"
+            ],
             "modules": [
               {
                 "power": {
@@ -214,8 +224,14 @@
   "theme.bar.buttons.background_hover_opacity": 100,
   "bar.layouts": {
     "0": {
-      "left": ["dashboard", "workspaces", "windowtitle"],
-      "middle": ["media"],
+      "left": [
+        "dashboard",
+        "workspaces",
+        "windowtitle"
+      ],
+      "middle": [
+        "media"
+      ],
       "right": [
         "volume",
         "network",
@@ -227,8 +243,14 @@
       ]
     },
     "1": {
-      "left": ["dashboard", "workspaces", "windowtitle"],
-      "middle": ["media"],
+      "left": [
+        "dashboard",
+        "workspaces",
+        "windowtitle"
+      ],
+      "middle": [
+        "media"
+      ],
       "right": [
         "volume",
         "network",
@@ -240,8 +262,14 @@
       ]
     },
     "2": {
-      "left": ["dashboard", "workspaces", "windowtitle"],
-      "middle": ["media"],
+      "left": [
+        "dashboard",
+        "workspaces",
+        "windowtitle"
+      ],
+      "middle": [
+        "media"
+      ],
       "right": [
         "volume",
         "network",
@@ -268,7 +296,7 @@
   "theme.osd.opacity": 100,
   "menus.dashboard.shortcuts.right.shortcut3.command": "bash -c \"$HOME/.config/hypr/scripts/screenshot --area\"",
   "menus.dashboard.shortcuts.right.shortcut1.command": "bash -c \"$HOME/.config/hypr/scripts/colorpicker\"",
-  "menus.dashboard.powermenu.sleep": "bash -c \"hyprlock & sleep 0.4 && systemctl suspend\"",
+  "menus.dashboard.powermenu.sleep": "bash -c \"hyprlock & disown && systemctl suspend\"",
   "menus.dashboard.shortcuts.left.shortcut2.tooltip": "Calculator",
   "menus.dashboard.shortcuts.left.shortcut2.command": "gnome-calculator",
   "menus.dashboard.shortcuts.left.shortcut2.icon": "",
@@ -667,4 +695,3 @@
   "wallpaper.enable": false,
   "theme.bar.menus.monochrome": false
 }
-
