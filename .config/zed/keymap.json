@@ -2,13 +2,16 @@
   {
     "context": "Workspace",
     "bindings": {
-      "ctrl-`": "terminal_panel::ToggleFocus"
+      "ctrl-`": "terminal_panel::ToggleFocus",
+      "ctrl-a": "project_panel::ToggleFocus",
+      "ctrl-?": "workspace::ToggleRightDock"
     }
   },
   {
     "context": "vim_mode == normal && !menu",
     "bindings": {
-      "ctrl-e": "file_finder::Toggle"
+      "ctrl-e": "file_finder::Toggle",
+      "alt-.": "project_panel::ToggleFocus"
     }
   },
   {
