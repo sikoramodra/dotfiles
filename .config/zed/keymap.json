@@ -3,7 +3,6 @@
     "context": "Workspace",
     "bindings": {
       "ctrl-`": "terminal_panel::ToggleFocus",
-      "ctrl-a": "project_panel::ToggleFocus",
       "ctrl-?": "workspace::ToggleRightDock"
     }
   },
