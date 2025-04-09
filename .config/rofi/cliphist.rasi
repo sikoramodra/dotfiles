@@ -1,0 +1,15 @@
+configuration{
+    modi: "clipboard";
+    icon-theme: "Tela-circle-blue-dark";
+    show-icons: false;
+    terminal: "kitty";
+    drun-display-format: "{name}";
+    location: 0;
+    disable-history: false;
+    hide-scrollbar: true;
+    display-clipboard: " 󰅇  clipboard ";
+    sidebar-mode: true;
+}
+
+@theme "onedark"
+

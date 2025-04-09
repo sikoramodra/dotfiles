@@ -10,3 +10,6 @@ hyprpaper &
 
 # Launch bar
 hyprpanel &
+
+# Clipboard history
+wl-paste --watch cliphist store
