@@ -4,24 +4,24 @@ notify_cmd='notify-send -h string:x-canonical-private-synchronous:sys-notify-vol
 
 # Get Volume
 get_volume() {
-	echo "`pulsemixer --get-volume | cut -d' ' -f1`"
+  echo "$(pulsemixer --get-volume | cut -d' ' -f1)"
 }
 
 # Notify
 notify_user() {
-	${notify_cmd} "Volume : $(get_volume)%"
+  ${notify_cmd} "Volume : $(get_volume)%"
 }
 
 # Increase Volume
 inc_volume() {
-	[[ `pulsemixer --get-mute` == 1 ]] && pulsemixer --unmute
-	pulsemixer --max-volume 100 --change-volume +5 
+  [[ $(pulsemixer --get-mute) == 1 ]] && pulsemixer --unmute
+  pulsemixer --max-volume 100 --change-volume +5
 }
 
 # Decrease Volume
 dec_volume() {
-	[[ `pulsemixer --get-mute` == 1 ]] && pulsemixer --unmute
-	pulsemixer --max-volume 100 --change-volume -5
+  [[ $(pulsemixer --get-mute) == 1 ]] && pulsemixer --unmute
+  pulsemixer --max-volume 100 --change-volume -5
 }
 
 # Toggle Mute
@@ -31,25 +31,25 @@ toggle_mute() {
 
 # Toggle Mic
 toggle_mic() {
-	ID="`pulsemixer --list-sources | grep 'Default' | cut -d',' -f1 | cut -d' ' -f3`"
-  pulsemixer --id ${ID} --toggle-mute 
+  ID="$(pulsemixer --list-sources | grep 'Default' | cut -d',' -f1 | cut -d' ' -f3)"
+  pulsemixer --id ${ID} --toggle-mute
 }
 
 # Execute accordingly
-if [[ -x `which pulsemixer` ]]; then
-	if [[ "$1" == "--get" ]]; then
-		get_volume
-	elif [[ "$1" == "--inc" ]]; then
-		inc_volume
-	elif [[ "$1" == "--dec" ]]; then
-		dec_volume
-	elif [[ "$1" == "--toggle" ]]; then
-		toggle_mute
-	elif [[ "$1" == "--toggle-mic" ]]; then
-		toggle_mic
-	else
-		echo $(get_volume)%
-	fi
+if [[ -x $(which pulsemixer) ]]; then
+  if [[ "$1" == "--get" ]]; then
+    get_volume
+  elif [[ "$1" == "--inc" ]]; then
+    inc_volume
+  elif [[ "$1" == "--dec" ]]; then
+    dec_volume
+  elif [[ "$1" == "--toggle" ]]; then
+    toggle_mute
+  elif [[ "$1" == "--toggle-mic" ]]; then
+    toggle_mic
+  else
+    echo $(get_volume)%
+  fi
 else
-	${notify_cmd} "'pulsemixer' is not installed."
+  ${notify_cmd} "'pulsemixer' is not installed."
 fi

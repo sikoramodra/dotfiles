@@ -8,12 +8,12 @@ CURSOR_SIZE='30'
 
 SCHEMA='gsettings set org.gnome.desktop.interface'
 
-apply_themes () {
-	${SCHEMA} gtk-theme "$THEME"
-	${SCHEMA} icon-theme "$ICONS"
-	${SCHEMA} cursor-theme "$CURSOR"
-	${SCHEMA} font-name "$FONT"
-	${SCHEMA} cursor-size "$CURSOR_SIZE"
+apply_themes() {
+  ${SCHEMA} gtk-theme "$THEME"
+  ${SCHEMA} icon-theme "$ICONS"
+  ${SCHEMA} cursor-theme "$CURSOR"
+  ${SCHEMA} font-name "$FONT"
+  ${SCHEMA} cursor-size "$CURSOR_SIZE"
 }
 
 apply_themes
