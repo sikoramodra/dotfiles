@@ -21,4 +21,7 @@
       "ctrl-w": "pane::CloseActiveItem"
     }
   }
+  //{
+  //  "context": "project_panel"
+  //}
 ]

@@ -12,4 +12,4 @@ hyprpaper &
 hyprpanel &
 
 # Clipboard history
-wl-paste --watch cliphist store
+wl-paste --watch cliphist store &
