@@ -29,6 +29,7 @@
       "P": "project_panel::SelectParent",
       "a": "project_panel::NewFile",
       "c": "project_panel::Copy",
+      "e": "project_panel::CollapseAllEntries",
       "d": "project_panel::Trash",
       "gy": "workspace::CopyPath",
       "p": "project_panel::Paste",
