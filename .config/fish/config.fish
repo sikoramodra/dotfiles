@@ -1,6 +1,6 @@
 set -U fish_greeting ""
 set -gx EDITOR nvim
-set -gx BROWSER zen-browser
+set -gx BROWSER brave
 set -gx Lang en_US.UTF-8
 
 # ⌁⌁⌁
