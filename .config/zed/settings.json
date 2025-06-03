@@ -2,13 +2,11 @@
   "features": {
     "edit_prediction_provider": "zed"
   },
-  // "agent": {
-  //   "default_model": {
-  //     "provider": "ollama",
-  //     "model": "deepseek-r1:14b"
-  //   },
-  //   "version": "2"
-  // },
+  "agent": {
+    "version": "2",
+    "enabled": false,
+    "button": false
+  },
   "vim_mode": true,
   "vim": {
     "use_system_clipboard": "always"
