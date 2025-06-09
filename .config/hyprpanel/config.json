@@ -693,5 +693,8 @@
   "theme.bar.enableShadow": false,
   "bar.clock.format": "%a %b %d  %H:%M:%S",
   "wallpaper.enable": false,
-  "theme.bar.menus.monochrome": false
+  "theme.bar.menus.monochrome": false,
+  "bar.customModules.storage.paths": [
+    "/"
+  ]
 }

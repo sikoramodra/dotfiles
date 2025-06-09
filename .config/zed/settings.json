@@ -89,6 +89,22 @@
           "arguments": ["--filename", "{buffer_path}", "--indent", "4"]
         }
       }
+    },
+    "C++": {
+      "tab_size": 4
+    },
+    "CMake": {
+      "tab_size": 4
+    },
+    "QML": {
+      "tab_size": 4,
+      "format_on_save": "on",
+      "formatter": {
+        "external": {
+          "command": "qmlformat",
+          "arguments": ["{buffer_path}"]
+        }
+      }
     }
   },
   "autosave": "on_focus_change",
@@ -110,7 +126,9 @@
     "log": true,
     "git-firefly": true,
     "astro": true,
-    "svelte": true
+    "svelte": true,
+    "qml": true,
+    "neocmake": true
   },
   "terminal": {
     "shell": {
