@@ -97,14 +97,13 @@
       "tab_size": 4
     },
     "QML": {
-      "tab_size": 4,
-      "format_on_save": "on",
-      "formatter": {
-        "external": {
-          "command": "qmlformat",
-          "arguments": ["{buffer_path}"]
-        }
-      }
+      "tab_size": 4
+      // "formatter": {
+      //   "external": {
+      //     "command": "qmlformat",
+      //     "arguments": ["{buffer_path}"]
+      //   }
+      // }
     }
   },
   "autosave": "on_focus_change",
