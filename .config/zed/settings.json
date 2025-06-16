@@ -43,6 +43,9 @@
     "light": "One Light",
     "dark": "One Dark"
   },
+  "title_bar": {
+    "show_sign_in": false
+  },
   "toolbar": {
     "breadcrumbs": false,
     "quick_actions": false,
@@ -98,12 +101,6 @@
     },
     "QML": {
       "tab_size": 4
-      // "formatter": {
-      //   "external": {
-      //     "command": "qmlformat",
-      //     "arguments": ["{buffer_path}"]
-      //   }
-      // }
     }
   },
   "autosave": "on_focus_change",

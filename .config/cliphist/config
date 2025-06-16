@@ -1,1 +1,2 @@
-max-dedupe-search 0
+max-items 1000
+max-dedupe-search 200
