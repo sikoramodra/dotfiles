@@ -101,6 +101,9 @@
     },
     "QML": {
       "tab_size": 4
+    },
+    "XML": {
+      "tab_size": 4
     }
   },
   "autosave": "on_focus_change",
@@ -124,7 +127,8 @@
     "astro": true,
     "svelte": true,
     "qml": true,
-    "neocmake": true
+    "neocmake": true,
+    "xml": true
   },
   "terminal": {
     "shell": {
