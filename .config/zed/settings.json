@@ -28,6 +28,20 @@
           "--issues-exit-code=1"
         ]
       }
+    },
+    "basedpyright": {
+      "settings": {
+        "python": {
+          "pythonPath": ".venv/bin/python"
+        }
+      }
+    },
+    "ruff": {
+      "initialization_options": {
+        "settings": {
+          "lineLength": 80
+        }
+      }
     }
   },
   "journal": {
@@ -82,7 +96,7 @@
     },
     "Go": {
       "tab_size": 4,
-      "language_servers": ["gopls", "golangci-lint", "..."]
+      "language_servers": ["gopls", "golangci-lint"]
     },
     "Shell Script": {
       "tab_size": 4,
@@ -104,6 +118,21 @@
     },
     "XML": {
       "tab_size": 4
+    },
+    "Python": {
+      "tab_size": 4,
+      "language_servers": ["basedpyright", "ruff"],
+      "formatter": [
+        {
+          "code_actions": {
+            "source.organizeImports.ruff": true,
+            "source.fixAll.ruff": true
+          }
+        },
+        {
+          "language_server": { "name": "ruff" }
+        }
+      ]
     }
   },
   "autosave": "on_focus_change",
@@ -128,7 +157,9 @@
     "svelte": true,
     "qml": true,
     "neocmake": true,
-    "xml": true
+    "xml": true,
+    "basedpyright": true,
+    "ruff": true
   },
   "terminal": {
     "shell": {

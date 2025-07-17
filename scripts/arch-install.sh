@@ -240,7 +240,7 @@ while confirm "Do you want to chroot and configure the system?"; do
     arch-chroot /mnt passwd root
 
     info "Creating user: $user"
-    arch-chroot /mnt useradd -m -G wheel -s /bin/bash "$user"
+    arch-chroot /mnt useradd -m -G wheel video -s /bin/bash "$user"
 
     info "Setting password for user: $user"
     arch-chroot /mnt passwd "$user"
