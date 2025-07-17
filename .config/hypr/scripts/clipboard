@@ -1,3 +1,5 @@
 #!/usr/bin/env bash
 
-rofi -modi clipboard:$HOME/.config/rofi/cliphist.sh -show clipboard -config $HOME/.config/rofi/cliphist.rasi -theme-str 'listview { columns: 1; }'
+# TODO: Improve
+
+rofi -modi clipboard:"$HOME"/.config/rofi/cliphist.sh -show clipboard -config "$HOME"/.config/rofi/cliphist.rasi -theme-str 'listview { columns: 1; }'

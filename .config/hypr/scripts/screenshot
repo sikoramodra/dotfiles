@@ -4,14 +4,11 @@ time=$(date +%Y-%m-%d-%H-%M-%S)
 dir="$(xdg-user-dir PICTURES)/Screenshots"
 file="Screenshot_${time}_${RANDOM}.png"
 
-# notify and view screenshot
-notify_cmd_shot="notify-send -h string:x-canonical-private-synchronous:sys-notify-shot -u low"
 notify_view() {
-  ${notify_cmd_shot} "Copied to clipboard."
+  notify-send -h string:x-canonical-private-synchronous:sys-notify-shot -u low "Copied to clipboard."
   paplay /usr/share/sounds/freedesktop/stereo/screen-capture.oga &>/dev/null &
 }
 
-# countdown
 countdown() {
   for sec in $(seq "$1" -1 1); do
     notify-send -h string:x-canonical-private-synchronous:sys-notify-count -t 1000 "Taking shot in : $sec"
@@ -19,21 +16,20 @@ countdown() {
   done
 }
 
-# take shots
 shotnow() {
-  cd "${dir}" && sleep 0.5 && grim - | tee "$file" | wl-copy
+  cd "${dir}" && grim - | tee "$file" | wl-copy
   notify_view
 }
 
 shot5() {
   countdown '5'
-  sleep 1 && cd "${dir}" && grim - | tee "$file" | wl-copy
+  cd "${dir}" && grim - | tee "$file" | wl-copy
   notify_view
 }
 
 shot10() {
   countdown '10'
-  sleep 1 && cd "${dir}" && grim - | tee "$file" | wl-copy
+  cd "${dir}" && grim - | tee "$file" | wl-copy
   notify_view
 }
 
@@ -47,12 +43,9 @@ shotwin() {
 shotarea() {
   cd "${dir}" || exit 1
 
-  # Run slurp and capture the selection geometry
   geometry=$(slurp -b 20262CCC -c B4A1DBff -s B4A1DB0D -w 2 && sleep 0.3)
 
-  # Check if slurp was successful
-  if [[ $? -eq 0 ]]; then
-    # If successful, use the geometry in grim and continue
+  if [[ -n "$geometry" ]]; then
     grim -g "$geometry" - | tee "$file" | wl-copy
     notify_view
   fi
@@ -75,5 +68,3 @@ elif [[ "$1" == "--area" ]]; then
 else
   echo -e "Available Options : --now --in5 --in10 --win --area"
 fi
-
-exit 0

@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-# Get brightness
 get_backlight() {
   CURRENT_BRIGHTNESS=$(brightnessctl get)
   MAX_BRIGHTNESS=$(brightnessctl max)
@@ -8,22 +7,14 @@ get_backlight() {
   echo "${PERCENTAGE}%"
 }
 
-# Notify
-notify_user() {
-  notify-send -h string:x-canonical-private-synchronous:sys-notify-backlight -u low "Brightness : $(get_backlight)"
-}
-
-# Increase brightness
 inc_backlight() {
   brightnessctl set 5%+
 }
 
-# Decrease brightness
 dec_backlight() {
   brightnessctl set 5%-
 }
 
-# Execute accordingly
 if [[ "$1" == "--get" ]]; then
   get_backlight
 elif [[ "$1" == "--inc" ]]; then
