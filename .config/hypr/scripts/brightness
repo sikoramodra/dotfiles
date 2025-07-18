@@ -1,26 +1,26 @@
 #!/usr/bin/env bash
 
 get_backlight() {
-  CURRENT_BRIGHTNESS=$(brightnessctl get)
-  MAX_BRIGHTNESS=$(brightnessctl max)
-  PERCENTAGE=$(printf "%.0f" "$((100 * CURRENT_BRIGHTNESS / MAX_BRIGHTNESS))")
-  echo "${PERCENTAGE}%"
+    CURRENT_BRIGHTNESS=$(brightnessctl get)
+    MAX_BRIGHTNESS=$(brightnessctl max)
+    PERCENTAGE=$(printf "%.0f" "$((100 * CURRENT_BRIGHTNESS / MAX_BRIGHTNESS))")
+    echo "${PERCENTAGE}%"
 }
 
 inc_backlight() {
-  brightnessctl set 5%+
+    brightnessctl set 5%+
 }
 
 dec_backlight() {
-  brightnessctl set 5%-
+    brightnessctl set 5%-
 }
 
 if [[ "$1" == "--get" ]]; then
-  get_backlight
+    get_backlight
 elif [[ "$1" == "--inc" ]]; then
-  inc_backlight
+    inc_backlight
 elif [[ "$1" == "--dec" ]]; then
-  dec_backlight
+    dec_backlight
 else
-  get_backlight
+    get_backlight
 fi

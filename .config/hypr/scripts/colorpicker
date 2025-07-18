@@ -4,11 +4,11 @@ color=$(hyprpicker -a)
 image=/tmp/${color}.png
 
 main() {
-  if [[ "$color" ]]; then
-    echo "$color" | tr -d "\n" | wl-copy
-    magick -size 48x48 xc:"$color" "${image}"
-    notify-send -h string:x-canonical-private-synchronous:sys-notify-picker -u low -i "${image}" "$color, copied to clipboard."
-  fi
+    if [[ "$color" ]]; then
+        echo "$color" | tr -d "\n" | wl-copy
+        magick -size 48x48 xc:"$color" "${image}"
+        notify-send -h string:x-canonical-private-synchronous:sys-notify-picker -u low -i "${image}" "$color, copied to clipboard."
+    fi
 }
 
 main
