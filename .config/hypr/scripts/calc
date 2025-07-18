@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+rofi -show calc -display-calc "  Calc " -no-show-match -no-sort -no-show-icons -no-sidebar-mode -terse -no-history -lines 0 -theme-str 'window { height: 140px; }' | wl-copy

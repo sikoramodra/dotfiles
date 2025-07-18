@@ -4,6 +4,7 @@
 - `hyprland` - window manager
 - `kitty` - terminal
 - `rofi-wayland` - app launcher
+- `rofi-calc` - rofi calculator plugin
 - `fish` - user shell
 - `nemo` - file manager
 - `viewnior` - image viewer
@@ -93,5 +94,3 @@
 - `yaak-bin` - dev
 - `basedpyright` - dev
 <!-- - cmake-format golangci-lint-bin dotenv-linter-bin hadolint-bin swag gofumpt yamllint -->
-
-<!-- TODO: rofi-calc -->
