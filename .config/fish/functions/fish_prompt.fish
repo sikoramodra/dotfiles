@@ -50,4 +50,5 @@ function fish_prompt
   echo -n $white'─'$__fish_prompt_char $normal
 end
 
+set -g VIRTUAL_ENV_DISABLE_PROMPT 1
 
