@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# raw:
+# curl -LO https://raw.githubusercontent.com/sikoramodra/dotfiles/refs/heads/main/scripts/arch-install.sh
+
 set -euo pipefail # Exit on error, undefined variables, and pipe failures
 
 # Color codes for better output
@@ -65,8 +68,6 @@ get_partition() {
     local partition
 
     while true; do
-        lsblk
-        echo
         read -r -p "$prompt: " partition
         if validate_partition "$partition"; then
             echo "$partition"
@@ -148,11 +149,13 @@ done
 
 ## Filesystem
 while confirm "Do you want to format partitions and set up filesystems?"; do
+    lsblk
+    echo
     PART_ROOT=$(get_partition "Enter root partition (e.g., sda3, nvme0n1p3)")
     PART_SWAP=$(get_partition "Enter swap partition (e.g., sda2, nvme0n1p2)")
     PART_BOOT=$(get_partition "Enter boot partition (e.g., sda1, nvme0n1p1)")
 
-    echo
+    clear
     warning "This will format the following partitions:"
     echo "  Root: /dev/$PART_ROOT (ext4)"
     echo "  Swap: /dev/$PART_SWAP (swap)"
@@ -240,7 +243,7 @@ while confirm "Do you want to chroot and configure the system?"; do
     arch-chroot /mnt passwd root
 
     info "Creating user: $user"
-    arch-chroot /mnt useradd -m -G wheel video -s /bin/bash "$user"
+    arch-chroot /mnt useradd -m -G wheel,video -s /bin/bash "$user"
 
     info "Setting password for user: $user"
     arch-chroot /mnt passwd "$user"
@@ -263,13 +266,12 @@ done
 
 ## Post Install
 umount -R /mnt
-swapoff /dev/"$PART_SWAP"
 
 info "Installation completed successfully!"
 info "The system will reboot in 5 seconds"
 info "Press Ctrl+C to cancel reboot and stay in live environment"
 
-for i in {5..1}; do
+for i in {10..1}; do
     echo -ne "\rRebooting in $i seconds..."
     sleep 1
 done

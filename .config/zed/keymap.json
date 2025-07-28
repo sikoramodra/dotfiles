@@ -18,8 +18,7 @@
     "bindings": {
       "ctrl-`": "workspace::ToggleBottomDock",
       "ctrl-t": "workspace::NewTerminal",
-      "ctrl-w": "pane::CloseActiveItem",
-      "alt-.": "workspace::ClearAllNotifications"
+      "ctrl-w": "pane::CloseActiveItem"
     }
   },
   {
