@@ -24,7 +24,6 @@
 - `pulsemixer` - mixer for pulse
 - `pavucontrol` - volume control
 - `ark` - archive tool
-- `arc-gtk-theme` - gtk theme
 - `kvantum` - qt6 theme engine
 - `kvantum-qt5` - qt5 theme engine
 - `tela-circle-icon-theme-blue` - icons
@@ -83,6 +82,7 @@
 
 - `brave-bin` - browser
 - `ags-hyprpanel-git` - panel
+- `arc-gtk-theme` - gtk theme
 - `simplenote-electron-bin` - notes
 - `hyprpicker` - color picker
 - `breezex-cursor-theme` - cursor theme

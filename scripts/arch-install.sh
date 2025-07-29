@@ -2,6 +2,8 @@
 
 # raw:
 # curl -LO https://raw.githubusercontent.com/sikoramodra/dotfiles/refs/heads/main/scripts/arch-install.sh
+# chmod +x arch-install.sh
+# ./arch-install.sh
 
 set -euo pipefail # Exit on error, undefined variables, and pipe failures
 
@@ -190,7 +192,7 @@ while confirm "Do you want to run pacstrap?"; do
     clear
 
     info "Installing base packages..."
-    pacstrap /mnt base base-devel git linux linux-firmware linux-headers networkmanager neovim man-db man-pages texinfo dosfstools e2fsprogs grub efibootmgr
+    pacstrap /mnt base base-devel git linux linux-firmware linux-headers networkmanager neovim openssh man-db man-pages texinfo dosfstools e2fsprogs grub efibootmgr
     clear
 
     info "Installing drivers..."
