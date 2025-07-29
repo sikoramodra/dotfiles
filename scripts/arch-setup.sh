@@ -67,44 +67,42 @@ while confirm "Do you want to install system's packages?"; do
     clear
 done
 
-# git config --global init.defaultBranch main
-# git config --global user.email "wojciechmodro@gmail.com"
-# git config --global user.name "sikoramodra"
+xdg-user-dirs-update
 
-# git@github.com:sikoramodra/dotfiles.git
+# git remote set-url origin git@github.com:sikoramodra/dotfiles.git
 
-# git clone https://aur.archlinux.org/paru-bin
-# cd paru-bin/
-# makepkg -si
-# xdg-user-dirs-update
+## Stow
+while confirm "Do you want to link dotfiles to system files?"; do
+    # cp -r dotfiles/other/.local/share/icons/BreezeX-Dark-hyprcursor ~/.local/share/icons/
+    rm ~/.bash_profile ~/.bashrc
+    mkdir -p ~/.local/share/icons
 
-# cd ~
-# git clone https://github.com/sikoramodra/dotfiles
-# cd dotfiles
-# rm ~/.bash_profile
-# stow .
-
-# mkdir -p ~/.local/share/icons
-# cp -r dotfiles/other/.local/share/icons/BreezeX-Dark-hyprcursor ~/.local/share/icons/
+    cd dotfiles
+    stow .
+    cd ..
+    clear
+done
 
 # sudo mkdir -p /etc/systemd/system/getty@tty1.service.d
-# sudo vim /etc/systemd/system/getty@tty1.service.d/skip-username.conf
+# sudo cat > /etc/systemd/system/getty@tty1.service.d/skip-username.conf << 'EOF'
 # [Service]
 # ExecStart=
 # ExecStart=-/sbin/agetty -o '-p -- wm' --noclear --skip-login - $TERM
+# EOF
 
-# nvim /etc/pacman.conf
+# sudo mkdir -p /etc/systemd/system/getty@tty1.service.d
+# sudo vim /etc/systemd/system/getty@tty1.service.d/skip-username.conf
+# ```
+# [Service]
+# ExecStart=
+# ExecStart=-/sbin/agetty -o '-p -- wm' --noclear --skip-login - $TERM
+# ```
+
+# sudo nvim /etc/pacman.conf
 # Color
 # CheckSpace
-# # ILoveCandy
 # VerbosePkgLists
 # ParallelDownloads = 7
-
-# nvim /etc/paru.conf
-# BatchInstall
-# SudoLoop
-# UpgradeMenu
-# NewsOnUpgrade
 
 # sudo nvim /etc/enviroment
 # QT_QPA_PLATFORM=wayland
@@ -117,24 +115,16 @@ done
 # sudo systemctl enable --now docker.service
 # sudo systemctl enable --now nginx.service
 # sudo systemctl enable --now bluetooth.service
+# sudo usermod -aG docker wm
 
 # ~sudo systemctl enable --now cups.service
 # https://developers.hp.com/hp-linux-imaging-and-printing/gethplip
 # pac -S hplip pyqt5
 # https://developers.hp.com/hp-linux-imaging-and-printing/install/install/index
-# https://developers.hp.com/hp-linux-imaging-and-printing/install/install/index
 # hp-setup
-
-# cd ~
-# rm -rf paru-bin/
-
-# mkdir -p .local/share/rofi/themes
-# cp -r dotfiles/.config/rofi/onedark.rasi ~/.local/share/rofi/themes/
 
 # #### BRAVE, GITHUB
 # ozone platform wayland
-
-# sudo usermod -aG docker wm
 
 # go install golang.org/x/vuln/cmd/govulncheck@latest
 # go install github.com/daixiang0/gci@latest
