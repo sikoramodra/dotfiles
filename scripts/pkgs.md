@@ -29,6 +29,7 @@
 - `tela-circle-icon-theme-blue` - icons
 - `brightnessctl` - screen brightness controls
 - `power-profiles-daemon` - power profiles
+- `cups` - printers support
 - `powertop` - battery status
 - `cliphist` - clipboard manager
 - `hyprpaper` - wallpaper changer
@@ -54,6 +55,7 @@
 - `xdg-desktop-portal-hyprland` - desktop integration
 - `7zip` - 7zip support
 <!-- - `qt6-multimedia-ffmpeg`, `qt5ct`, `qt6ct` - dev -->
+- `figlet` - ascii text banner
 - `zed` - dev
 - `pnpm` - dev
 - `typescript` - dev

@@ -51,7 +51,7 @@ clear
 ## Packages
 while confirm "Do you want to install system's packages?"; do
     info "Installing pacman packages..."
-    sudo pacman -S --needed --noconfirm linux-lts hyprland kitty rofi-wayland rofi-calc fish nemo viewnior gimp mpv kdenlive obs-studio okular gnome-calculator gparted polkit-gnome hyprlock pipewire pipewire-audio pipewire-jack pipewire-pulse pulsemixer pavucontrol ark kvantum kvantum-qt5 tela-circle-icon-theme-blue brightnessctl power-profiles-daemon powertop cliphist hyprpaper fastfetch cava zoxide eza stow noto-fonts noto-fonts-cjk noto-fonts-emoji tree fzf ripgrep inetutils imagemagick wf-recorder pacman-contrib xdg-user-dirs xdg-desktop-portal-gtk xdg-desktop-portal-hyprland 7zip zed pnpm typescript typescript-language-server prettier eslint go go-tools gopls delve uv ruff nginx docker docker-compose docker-buildx act bash-language-server shellcheck shfmt postgresql valkey
+    sudo pacman -S --needed --noconfirm linux-lts hyprland kitty rofi-wayland rofi-calc fish nemo viewnior gimp mpv kdenlive obs-studio okular gnome-calculator gparted polkit-gnome hyprlock pipewire pipewire-audio pipewire-jack pipewire-pulse pulsemixer pavucontrol ark kvantum kvantum-qt5 tela-circle-icon-theme-blue brightnessctl power-profiles-daemon cups powertop cliphist hyprpaper fastfetch cava zoxide eza stow noto-fonts noto-fonts-cjk noto-fonts-emoji tree fzf ripgrep inetutils imagemagick wf-recorder pacman-contrib xdg-user-dirs xdg-desktop-portal-gtk xdg-desktop-portal-hyprland 7zip figlet zed pnpm typescript typescript-language-server prettier eslint go go-tools gopls delve uv ruff nginx docker docker-compose docker-buildx act bash-language-server shellcheck shfmt postgresql valkey
     clear
 
     info "Installing paru..."
@@ -69,11 +69,8 @@ done
 
 xdg-user-dirs-update
 
-# git remote set-url origin git@github.com:sikoramodra/dotfiles.git
-
 ## Stow
 while confirm "Do you want to link dotfiles to system files?"; do
-    # cp -r dotfiles/other/.local/share/icons/BreezeX-Dark-hyprcursor ~/.local/share/icons/
     rm ~/.bash_profile ~/.bashrc
     mkdir -p ~/.local/share/icons
 
@@ -83,20 +80,78 @@ while confirm "Do you want to link dotfiles to system files?"; do
     clear
 done
 
-# sudo mkdir -p /etc/systemd/system/getty@tty1.service.d
-# sudo cat > /etc/systemd/system/getty@tty1.service.d/skip-username.conf << 'EOF'
-# [Service]
-# ExecStart=
-# ExecStart=-/sbin/agetty -o '-p -- wm' --noclear --skip-login - $TERM
-# EOF
+## tty1
+while confirm "Do you want to skip username on tty1?"; do
+    sudo mkdir -p /etc/systemd/system/getty@tty1.service.d
+    sudo tee /etc/systemd/system/getty@tty1.service.d/skip-username.conf >/dev/null <<'EOF'
+[Service]
+ExecStart=
+ExecStart=-/sbin/agetty -o '-p -- wm' --noclear --skip-login - $TERM
+EOF
+    clear
+done
 
-# sudo mkdir -p /etc/systemd/system/getty@tty1.service.d
-# sudo vim /etc/systemd/system/getty@tty1.service.d/skip-username.conf
-# ```
-# [Service]
-# ExecStart=
-# ExecStart=-/sbin/agetty -o '-p -- wm' --noclear --skip-login - $TERM
-# ```
+## QT/GTK
+while confirm "Do you want to add QT/GTK environment variables?"; do
+    sudo tee -a /etc/environment >/dev/null <<'EOF'
+QT_QPA_PLATFORM=wayland
+QT_QPA_PLATFORMTHEME=qt5ct
+QT_WAYLAND_DISABLE_WINDOWDECORATION=1
+QT_AUTO_SCREEN_SCALE_FACTOR=1
+QT_STYLE_OVERRIDE=kvantum
+GTK_THEME=Arc-Dark
+EOF
+    clear
+done
+
+## Services
+sudo systemctl enable --now docker.service
+sudo systemctl enable --now nginx.service
+sudo systemctl enable --now bluetooth.service
+sudo systemctl enable --now cups.service
+sudo usermod -aG docker wm
+clear
+
+## HP printer
+# while confirm "Do you want to configure HP printers?"; do
+#     # https://developers.hp.com/hp-linux-imaging-and-printing/gethplip
+#     # https://developers.hp.com/hp-linux-imaging-and-printing/install/install/index
+#     sudo pacman -S --needed --noconfirm hplip pyqt5
+#     hp-setup
+# done
+
+## HP soft-block wifi fix
+while confirm "Do you want to fix wifi soft-block on HP laptop?"; do
+    sudo tee /etc/systemd/system/hp-keycodes.service >/dev/null <<'EOF'
+[Unit]
+Description=HP setkeycodes fix
+
+[Service]
+Type=oneshot
+Restart=no
+RemainAfterExit=no
+ExecStart=/usr/bin/setkeycodes e057 240 e058 240
+
+[Install]
+WantedBy=rescue.target
+WantedBy=multi-user.target
+WantedBy=graphical.target
+EOF
+
+    sudo systemctl daemon-reload
+    sudo systemctl enable --now hp-keycodes.service
+
+    clear
+done
+
+#   __  __    _    _   _ _   _   _    _
+#  |  \/  |  / \  | \ | | | | | / \  | |
+#  | |\/| | / _ \ |  \| | | | |/ _ \ | |
+#  | |  | |/ ___ \| |\  | |_| / ___ \| |___
+#  |_|  |_/_/   \_\_| \_|\___/_/   \_\_____|
+#
+
+# git remote set-url origin git@github.com:sikoramodra/dotfiles.git
 
 # sudo nvim /etc/pacman.conf
 # Color
@@ -104,48 +159,8 @@ done
 # VerbosePkgLists
 # ParallelDownloads = 7
 
-# sudo nvim /etc/enviroment
-# QT_QPA_PLATFORM=wayland
-# QT_QPA_PLATFORMTHEME=qt5ct
-# QT_WAYLAND_DISABLE_WINDOWDECORATION=1
-# QT_AUTO_SCREEN_SCALE_FACTOR=1
-# QT_STYLE_OVERRIDE=kvantum
-# GTK_THEME=Arc-Dark
-
-# sudo systemctl enable --now docker.service
-# sudo systemctl enable --now nginx.service
-# sudo systemctl enable --now bluetooth.service
-# sudo usermod -aG docker wm
-
-# ~sudo systemctl enable --now cups.service
-# https://developers.hp.com/hp-linux-imaging-and-printing/gethplip
-# pac -S hplip pyqt5
-# https://developers.hp.com/hp-linux-imaging-and-printing/install/install/index
-# hp-setup
+# sudo nvim /etc/default/grub
+# GRUB_TOP_LEVEL="/boot/vmlinuz-linux"
 
 # #### BRAVE, GITHUB
 # ozone platform wayland
-
-# go install golang.org/x/vuln/cmd/govulncheck@latest
-# go install github.com/daixiang0/gci@latest
-
-# /etc/default/grub
-# GRUB_TOP_LEVEL="/boot/vmlinuz-linux"
-
-# sudo nvim /etc/systemd/system/hp-keycodes.service
-# [Unit]
-# Description=HP setkeycodes fix
-
-# [Service]
-# Type=oneshot
-# Restart=no
-# RemainAfterExit=no
-# ExecStart=/usr/bin/setkeycodes e057 240 e058 240
-
-# [Install]
-# WantedBy=rescue.target
-# WantedBy=multi-user.target
-# WantedBy=graphical.target
-
-# sudo systemctl daemon-reload
-# sudo systemctl enable --now hp-keycodes.service
