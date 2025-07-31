@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# For Xwayland applications
+xhost +local: &
 exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 
 # Apply themes

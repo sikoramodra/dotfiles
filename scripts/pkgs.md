@@ -7,6 +7,8 @@
 - `rofi-calc` - rofi calculator plugin
 - `fish` - user shell
 - `nemo` - file manager
+- `nemo-share` - support for android and network fs
+- `nemo-fileroller` - support for archives
 - `viewnior` - image viewer
 - `gimp` - image editor
 - `mpv` - video player
@@ -15,6 +17,7 @@
 - `okular` - pdf viewer
 - `gnome-calculator` - calculator
 - `gparted` - partition tool
+- `xorg-xhost` - support for xwayland apps
 - `polkit-gnome` - polkit authentication agent
 - `hyprlock` - lockscreen
 - `pipewire` - multimedia framework
@@ -51,6 +54,7 @@
 - `xdg-user-dirs` - manages user directories
 - `xdg-desktop-portal-gtk` - desktop integration
 - `xdg-desktop-portal-hyprland` - desktop integration
+- `gvfs-mtp` - mounting android fs
 - `7zip` - 7zip support
 - `figlet` - ascii text banner
 - `zed` - dev
@@ -87,6 +91,7 @@
 - `etcher-bin` - live usb creator
 - `grimblast-git` - screenshots helper
 - `pipes.sh` - pipes
+- `r-quick-share-bin` - quick share app
 - `gotop-bin` - system monitor
 - `yaak-bin` - dev
 - `basedpyright` - dev
