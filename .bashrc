@@ -11,6 +11,8 @@ PS1='[\u@\h \W]\$ '
 
 export PATH="$HOME/go/bin:$PATH"
 
+export TERM=kitty
+
 # export ANDROID_HOME="$HOME/Android/Sdk"
 # export ANDROID_SDK_ROOT="$HOME/Android/Sdk"
 # export ANDROID_NDK_ROOT="$HOME/Android/Sdk/ndk/29.0.13599879" # Replace with the actual version
