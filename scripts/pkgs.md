@@ -33,7 +33,6 @@
 - `powertop` - battery status
 - `cliphist` - clipboard manager
 - `hyprpaper` - wallpaper changer
-<!-- - `swww` -->
 - `fastfetch` - neofetch alternative
 - `cava` - audio visualizer
 - `zoxide` - cd alternative
@@ -46,7 +45,6 @@
 - `fzf` - fuzzy finder
 - `ripgrep` - search tool
 - `inetutils` - common network programs
-<!-- - `gnu-netcat` -->
 - `imagemagick` - cli image edits
 - `wf-recorder` - cli screen recorder
 - `pacman-contrib` - pacman updates
@@ -54,7 +52,6 @@
 - `xdg-desktop-portal-gtk` - desktop integration
 - `xdg-desktop-portal-hyprland` - desktop integration
 - `7zip` - 7zip support
-<!-- - `qt6-multimedia-ffmpeg`, `qt5ct`, `qt6ct` - dev -->
 - `figlet` - ascii text banner
 - `zed` - dev
 - `pnpm` - dev
@@ -68,7 +65,6 @@
 - `delve` - dev
 - `uv` - dev
 - `ruff` - dev
-<!-- - `jdk17-openjdk` `python-pip` `extra-cmake-modules` -->
 - `nginx` - dev
 - `docker` - dev
 - `docker-compose` - dev
@@ -90,9 +86,8 @@
 - `breezex-cursor-theme` - cursor theme
 - `etcher-bin` - live usb creator
 - `grimblast-git` - screenshots helper
-<!-- - `light` - brightness control -->
 - `pipes.sh` - pipes
 - `gotop-bin` - system monitor
 - `yaak-bin` - dev
 - `basedpyright` - dev
-<!-- - cmake-format golangci-lint-bin dotenv-linter-bin hadolint-bin swag gofumpt yamllint -->
+<!-- - `bun-bin` - dev -->

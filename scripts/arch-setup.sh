@@ -70,7 +70,7 @@ done
 xdg-user-dirs-update
 
 ## Stow
-while confirm "Do you want to link dotfiles to system files?"; do
+if confirm "Do you want to link dotfiles to system files?"; then
     rm ~/.bash_profile ~/.bashrc
     mkdir -p ~/.local/share/icons
 
@@ -78,10 +78,10 @@ while confirm "Do you want to link dotfiles to system files?"; do
     stow .
     cd ..
     clear
-done
+fi
 
 ## tty1
-while confirm "Do you want to skip username on tty1?"; do
+if confirm "Do you want to skip username on tty1?"; then
     sudo mkdir -p /etc/systemd/system/getty@tty1.service.d
     sudo tee /etc/systemd/system/getty@tty1.service.d/skip-username.conf >/dev/null <<'EOF'
 [Service]
@@ -89,10 +89,10 @@ ExecStart=
 ExecStart=-/sbin/agetty -o '-p -- wm' --noclear --skip-login - $TERM
 EOF
     clear
-done
+fi
 
 ## QT/GTK
-while confirm "Do you want to add QT/GTK environment variables?"; do
+if confirm "Do you want to add QT/GTK environment variables?"; then
     sudo tee -a /etc/environment >/dev/null <<'EOF'
 QT_QPA_PLATFORM=wayland
 QT_QPA_PLATFORMTHEME=qt5ct
@@ -102,9 +102,10 @@ QT_STYLE_OVERRIDE=kvantum
 GTK_THEME=Arc-Dark
 EOF
     clear
-done
+fi
 
 ## Services
+info "enabling system services..."
 sudo systemctl enable --now docker.service
 sudo systemctl enable --now nginx.service
 sudo systemctl enable --now bluetooth.service
@@ -112,16 +113,8 @@ sudo systemctl enable --now cups.service
 sudo usermod -aG docker wm
 clear
 
-## HP printer
-# while confirm "Do you want to configure HP printers?"; do
-#     # https://developers.hp.com/hp-linux-imaging-and-printing/gethplip
-#     # https://developers.hp.com/hp-linux-imaging-and-printing/install/install/index
-#     sudo pacman -S --needed --noconfirm hplip pyqt5
-#     hp-setup
-# done
-
 ## HP soft-block wifi fix
-while confirm "Do you want to fix wifi soft-block on HP laptop?"; do
+if confirm "Do you want to fix wifi soft-block on HP laptop?"; then
     sudo tee /etc/systemd/system/hp-keycodes.service >/dev/null <<'EOF'
 [Unit]
 Description=HP setkeycodes fix
@@ -142,7 +135,23 @@ EOF
     sudo systemctl enable --now hp-keycodes.service
 
     clear
-done
+fi
+
+## Default apps
+if confirm "Do you want to set default apps?"; then
+    # xdg-mime query default [file/extension]
+    xdg-mime default /usr/share/applications/nemo.desktop inode/directory application/x-gnome-saved-search
+    # ...
+fi
+
+## HP printer
+# if confirm "Do you want to configure HP printers?"; then
+#     # https://developers.hp.com/hp-linux-imaging-and-printing/gethplip
+#     # https://developers.hp.com/hp-linux-imaging-and-printing/install/install/index
+#     sudo pacman -S --needed --noconfirm hplip pyqt5
+#     QT_QPA_PLATFORM=xcb hp-setup
+#     # Select Network/Wireless (switch printer on)
+# fi
 
 #   __  __    _    _   _ _   _   _    _
 #  |  \/  |  / \  | \ | | | | | / \  | |
@@ -161,6 +170,62 @@ done
 
 # sudo nvim /etc/default/grub
 # GRUB_TOP_LEVEL="/boot/vmlinuz-linux"
+# sudo grub-mkconfig -o /boot/grub/grub.cfg
 
-# #### BRAVE, GITHUB
-# ozone platform wayland
+#### SIMPLENOTE
+# Login
+# Theme: Dark
+# Menu Bar: Hide Automatically
+# Notify on remote changes: false
+
+#### BRAVE
+# brave://flags/
+# Preferred Ozone platform: Auto
+#
+# Settings > Sync > I have a sync code
+# Get through simplenote
+# Check sync (all except: PWAs, reading list, tab groups)
+# relaunch
+#
+# # Customize
+# Show sponsored imgs: false
+# Top sites: false
+# Cards: false
+# Search: false
+# Scroll down > Brave news: false
+#
+# # Settings > Appearance
+# colors: Dark
+# # Settings > Toolbar
+# home button: false
+# bookmarks button: false
+# show bookmarks: never
+# news button: false
+# ai button: false
+# rewards button: false
+# wallet button: false
+# sidebar button: false
+# autocomplete suggestions > ai assistant: false
+# wide addres bar: true
+# full URLs: true
+# vertical tabs: true
+# tab search button: false
+# # Settings > Privacy and Security > Data collection: all false
+# # Settings > Leo
+# leo icon: false
+# leo in context menus: false
+# conversation history: false
+# # Settings > Search engine
+# google :/ searxng ;)
+# improve search suggestions: false
+# menage search engines - to add:
+# pac: Arch packages
+# aw: Arch Wiki
+# aur: AUR packages
+# # Settings > Extensions
+# Widevine: true
+
+#### GITHUB
+# Settings > SSH keys > new
+# ssh-keygen
+# cat ~/.ssh/id_ed25519.pub
