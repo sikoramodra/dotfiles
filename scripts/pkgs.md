@@ -6,6 +6,7 @@
 - `rofi-wayland` - app launcher
 - `rofi-calc` - rofi calculator plugin
 - `fish` - user shell
+- `adobe-source-code-pro-fonts` - main font
 - `nemo` - file manager
 - `nemo-share` - support for android and network fs
 - `nemo-fileroller` - support for archives
