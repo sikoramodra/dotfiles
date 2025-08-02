@@ -51,7 +51,7 @@ clear
 ## Packages
 while confirm "Do you want to install system's packages?"; do
     info "Installing pacman packages..."
-    sudo pacman -S --needed --noconfirm linux-lts hyprland kitty rofi-wayland rofi-calc fish adobe-source-code-pro-fonts nemo nemo-share nemo-fileroller viewnior gimp mpv kdenlive obs-studio okular gnome-calculator gparted xorg-xhost polkit-gnome hyprlock pipewire pipewire-audio pipewire-jack pipewire-pulse pulsemixer pavucontrol ark kvantum kvantum-qt5 tela-circle-icon-theme-blue brightnessctl power-profiles-daemon cups powertop cliphist hyprpaper fastfetch cava zoxide eza stow noto-fonts noto-fonts-cjk noto-fonts-emoji tree fzf ripgrep inetutils imagemagick wf-recorder pacman-contrib xdg-user-dirs xdg-desktop-portal-gtk xdg-desktop-portal-hyprland gvfs-mtp 7zip figlet zed pnpm typescript typescript-language-server prettier eslint go go-tools gopls delve uv ruff nginx docker docker-compose docker-buildx act bash-language-server shellcheck shfmt postgresql valkey
+    sudo pacman -S --needed --noconfirm linux-lts hyprland kitty rofi-wayland rofi-calc fish adobe-source-code-pro-fonts nemo nemo-share nemo-fileroller viewnior gimp mpv kdenlive obs-studio okular gnome-calculator gparted xorg-xhost polkit-gnome hyprlock pipewire pipewire-audio pipewire-jack pipewire-pulse pulsemixer pavucontrol ark kvantum kvantum-qt5 tela-circle-icon-theme-blue brightnessctl power-profiles-daemon cups powertop cliphist hyprpaper fastfetch cava zoxide eza stow noto-fonts noto-fonts-cjk noto-fonts-emoji tree fzf ripgrep inetutils imagemagick wf-recorder pacman-contrib fuse2 xdg-user-dirs xdg-desktop-portal-gtk xdg-desktop-portal-hyprland gvfs-mtp 7zip figlet zed pnpm typescript typescript-language-server prettier eslint go go-tools gopls delve uv ruff nginx docker docker-compose docker-buildx act bash-language-server shellcheck shfmt postgresql valkey
     clear
 
     info "Installing paru..."
@@ -63,7 +63,7 @@ while confirm "Do you want to install system's packages?"; do
     clear
 
     info "Installing AUR packages..."
-    paru -S --needed --noconfirm brave-bin ags-hyprpanel-git arc-gtk-theme simplenote-electron-bin hyprpicker breezex-cursor-theme etcher-bin grimblast-git pipes.sh r-quick-share-bin gotop-bin yaak-bin basedpyright
+    paru -S --needed --noconfirm brave-bin ags-hyprpanel-git arc-gtk-theme simplenote-electron-bin hyprpicker breezex-cursor-theme etcher-bin grimblast-git pipes.sh gotop-bin yaak-bin basedpyright
     clear
 done
 

@@ -52,6 +52,7 @@
 - `imagemagick` - cli image edits
 - `wf-recorder` - cli screen recorder
 - `pacman-contrib` - pacman updates
+- `fuse2` - appimage support
 - `xdg-user-dirs` - manages user directories
 - `xdg-desktop-portal-gtk` - desktop integration
 - `xdg-desktop-portal-hyprland` - desktop integration
@@ -92,7 +93,6 @@
 - `etcher-bin` - live usb creator
 - `grimblast-git` - screenshots helper
 - `pipes.sh` - pipes
-- `r-quick-share-bin` - quick share app
 - `gotop-bin` - system monitor
 - `yaak-bin` - dev
 - `basedpyright` - dev
