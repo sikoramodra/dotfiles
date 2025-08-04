@@ -1,6 +1,7 @@
 set -U fish_greeting ""
-set -gx EDITOR nvim
 set -gx BROWSER brave
+set -gx TERM kitty
+set -gx EDITOR nvim
 set -gx Lang en_US.UTF-8
 
 # ⌁⌁⌁

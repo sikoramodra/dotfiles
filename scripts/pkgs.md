@@ -27,7 +27,6 @@
 - `pipewire-pulse` - compatibility layer (pulse)
 - `pulsemixer` - mixer for pulse
 - `pavucontrol` - volume control
-- `ark` - archive tool
 - `kvantum` - qt6 theme engine
 - `kvantum-qt5` - qt5 theme engine
 - `tela-circle-icon-theme-blue` - icons

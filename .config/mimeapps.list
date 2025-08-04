@@ -1,0 +1,10 @@
+[Default Applications]
+x-scheme-handler/http=brave-browser.desktop
+x-scheme-handler/https=brave-browser.desktop
+inode/directory=nemo.desktop
+image/jpeg=viewnior.desktop
+image/png=viewnior.desktop
+image/jpg=viewnior.desktop
+image/gif=viewnior.desktop
+application/pdf=okularApplication_pdf.desktop
+video/mp4=mpv.desktop

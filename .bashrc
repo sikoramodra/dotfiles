@@ -9,9 +9,9 @@ alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 PS1='[\u@\h \W]\$ '
 
-export PATH="$HOME/go/bin:$PATH"
-
 export TERM=kitty
+
+export PATH="$HOME/go/bin:$PATH"
 
 # export ANDROID_HOME="$HOME/Android/Sdk"
 # export ANDROID_SDK_ROOT="$HOME/Android/Sdk"
