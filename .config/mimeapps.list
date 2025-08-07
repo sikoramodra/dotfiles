@@ -6,5 +6,5 @@ image/jpeg=viewnior.desktop
 image/png=viewnior.desktop
 image/jpg=viewnior.desktop
 image/gif=viewnior.desktop
-application/pdf=okularApplication_pdf.desktop
+application/pdf=brave-browser.desktop
 video/mp4=mpv.desktop

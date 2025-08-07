@@ -15,7 +15,6 @@
 - `mpv` - video player
 - `kdenlive` - video editor
 - `obs-studio` - recording
-- `okular` - pdf viewer
 - `gnome-calculator` - calculator
 - `gparted` - partition tool
 - `xorg-xhost` - support for xwayland apps
