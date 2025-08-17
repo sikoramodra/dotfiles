@@ -39,6 +39,7 @@
 - `cava` - audio visualizer
 - `zoxide` - cd alternative
 - `eza` - ls alternative
+- `fd` - find alternative
 - `stow` - symlink farm manager
 - `noto-fonts` - default fonts
 - `noto-fonts-cjk` - other characters
@@ -77,6 +78,7 @@
 - `bash-language-server` - dev
 - `shellcheck` - dev
 - `shfmt` - dev
+- `gdb` - dev
 - `postgresql` - dev
 - `valkey` - dev
 
