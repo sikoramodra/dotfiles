@@ -154,6 +154,7 @@
     "git-firefly": true,
     "astro": true,
     "svelte": true,
+    "biome": true,
     "qml": true,
     "neocmake": true,
     "xml": true,
