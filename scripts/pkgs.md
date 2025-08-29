@@ -68,6 +68,7 @@
 - `go-tools` - dev
 - `gopls` - dev
 - `delve` - dev
+- `python-pip` - dev
 - `uv` - dev
 - `ruff` - dev
 - `nginx` - dev
