@@ -140,6 +140,7 @@ fi
 ## Other
 mkdir ~/Projects
 go telemetry off
+uv tool install nginx-language-server
 clear
 
 ## Default apps
