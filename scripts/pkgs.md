@@ -3,7 +3,7 @@
 - `linux-lts` - backup kernel
 - `hyprland` - window manager
 - `kitty` - terminal
-- `rofi-wayland` - app launcher
+- `rofi` - app launcher
 - `rofi-calc` - rofi calculator plugin
 - `fish` - user shell
 - `adobe-source-code-pro-fonts` - main font
