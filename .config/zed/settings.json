@@ -3,8 +3,8 @@
     "edit_prediction_provider": "zed"
   },
   "agent": {
-    "enabled": false,
-    "button": false
+    "enabled": true,
+    "button": true
   },
   "vim_mode": true,
   "vim": {
