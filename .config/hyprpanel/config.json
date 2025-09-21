@@ -689,7 +689,7 @@
   "menus.media.displayTime": true,
   "theme.bar.menus.menu.power.scaling": 90,
   "bar.workspaces.ignored": "-\\d+",
-  "theme.bar.menus.enableShadow": false,
+  "theme.bar.menus.enableShadow": true,
   "theme.bar.enableShadow": false,
   "bar.clock.format": "%a %b %d  %H:%M:%S",
   "wallpaper.enable": false,
@@ -707,5 +707,7 @@
   "menus.clock.weather.enabled": true,
   "menus.dashboard.controls.enabled": false,
   "bar.customModules.microphone.label": true,
-  "theme.bar.border.width": "0.15em"
+  "theme.bar.border.width": "0.15em",
+  "theme.bar.menus.shadow": "0px 0px 0px 0px #16161e",
+  "theme.bar.menus.shadowMargins": "0px 8px"
 }
