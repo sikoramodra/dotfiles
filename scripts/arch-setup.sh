@@ -186,6 +186,7 @@ fi
 #### BRAVE
 # brave://flags/
 # Preferred Ozone platform: Auto
+# brave://flags/#enable-webrtc-allow-input-volume-adjustment
 #
 # Settings > Sync > I have a sync code
 # Get through simplenote
