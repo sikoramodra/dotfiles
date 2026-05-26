@@ -36,6 +36,7 @@
 - `cliphist` - clipboard manager
 - `hyprpaper` - wallpaper changer
 - `fastfetch` - neofetch alternative
+- `btop` - system monitor
 - `cava` - audio visualizer
 - `zoxide` - cd alternative
 - `eza` - ls alternative
@@ -94,7 +95,6 @@
 - `etcher-bin` - live usb creator
 - `grimblast-git` - screenshots helper
 - `pipes.sh` - pipes
-- `gotop-bin` - system monitor
 - `yaak-bin` - dev
 - `basedpyright` - dev
 <!-- - `bun-bin` - dev -->
