@@ -73,11 +73,28 @@ xdg-user-dirs-update
 if confirm "Do you want to link dotfiles to system files?"; then
     rm ~/.bash_profile ~/.bashrc
     mkdir -p ~/.local/share/icons
+    mkdir -p ~/.config/cava
 
     cd dotfiles
     stow .
     cd ..
     clear
+fi
+
+# Hidden desktop files
+if confirm "Do you want to set up a hidden desktop files?"; then
+    mkdir -p ~/.local/share/applications
+
+    list=(avahi-discover.desktop bssh.desktop btop.desktop bvnc.desktop cmake-gui.desktop hp-uiscan.desktop hplip.desktop kvantummanager.desktop qv4l2.desktop qvidcap.desktop lstopo.desktop org.gnome.FileRoller.desktop rofi.desktop rofi-theme-selector.desktop)
+
+    for item in "${list[@]}"; do
+        cp /usr/share/applications/"$item" ~/.local/share/applications/
+        printf '\nNoDisplay=true\n' >>~/.local/share/applications/"$item"
+    done
+
+    cp /usr/share/applications/cups.desktop ~/.local/share/applications/
+    sudo chmod 644 ~/.local/share/applications/cups.desktop
+    printf '\nNoDisplay=true\n' >>~/.local/share/applications/cups.desktop
 fi
 
 ## tty1

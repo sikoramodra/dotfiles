@@ -17,11 +17,22 @@
     "dock": "left",
   },
   "agent": {
+    "tool_permissions": {
+      "tools": {
+        "search_web": {
+          "default": "allow"
+        },
+        "fetch": {
+          "default": "allow"
+        }
+      }
+    },
+    "default_profile": "write",
     "default_model": {
       "provider": "zed.dev",
-      "model": "claude-sonnet-4-6",
+      "model": "gpt-5.5",
       "enable_thinking": true,
-      "effort": "high",
+      "effort": "medium",
     },
     "dock": "right",
     "enabled": true,

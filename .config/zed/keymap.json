@@ -4,26 +4,28 @@
     "bindings": {
       "ctrl-`": "terminal_panel::ToggleFocus",
       "ctrl-?": "workspace::ToggleRightDock",
-      "ctrl-n": "project_panel::ToggleFocus"
-    }
+      "ctrl-n": "project_panel::ToggleFocus",
+    },
   },
   {
     "context": "vim_mode == normal && !menu",
     "bindings": {
-      "ctrl-e": "file_finder::Toggle"
-    }
+      "ctrl-e": "file_finder::Toggle",
+    },
   },
   {
     "context": "Terminal",
     "bindings": {
       "ctrl-`": "workspace::ToggleBottomDock",
       "ctrl-t": "workspace::NewTerminal",
-      "ctrl-w": "pane::CloseActiveItem"
-    }
+      "ctrl-w": "pane::CloseActiveItem",
+    },
   },
   {
     "context": "ProjectPanel && not_editing",
     "bindings": {
+      "j": "menu::SelectNext",
+      "k": "menu::SelectPrevious",
       "D": "project_panel::Delete",
       "P": "project_panel::SelectParent",
       "a": "project_panel::NewFile",
@@ -34,7 +36,7 @@
       "p": "project_panel::Paste",
       "r": "project_panel::Rename",
       "x": "project_panel::Cut",
-      "y": "workspace::CopyRelativePath"
-    }
-  }
+      "y": "workspace::CopyRelativePath",
+    },
+  },
 ]
