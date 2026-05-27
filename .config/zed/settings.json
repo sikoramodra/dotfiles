@@ -27,7 +27,7 @@
         }
       }
     },
-    "default_profile": "write",
+    "default_profile": "minimal",
     "default_model": {
       "provider": "zed.dev",
       "model": "gpt-5.5",

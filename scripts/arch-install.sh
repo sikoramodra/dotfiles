@@ -1,5 +1,15 @@
 #!/usr/bin/env bash
 
+localtime="Warsaw"
+locale1="en_US.UTF-8 UTF-8"
+locale2="pl_PL.UTF-8 UTF-8"
+lang="en_US.UTF-8"
+hostname="Arch"
+user="wm"
+keymap="pl"
+# ~pacstrap drivers
+# ~networkmanager
+
 # raw:
 # curl -LO https://raw.githubusercontent.com/sikoramodra/dotfiles/refs/heads/main/scripts/arch-install.sh
 # chmod +x arch-install.sh
@@ -208,14 +218,6 @@ fi
 
 ## Chroot
 while confirm "Do you want to chroot and configure the system?"; do
-    localtime="Warsaw"
-    locale1="en_US.UTF-8 UTF-8"
-    locale2="pl_PL.UTF-8 UTF-8"
-    lang="en_US.UTF-8"
-    hostname="Arch"
-    user="wm"
-    keymap="pl"
-
     # Timezone setup
     info "Setting up timezone..."
     arch-chroot /mnt ln -sf /usr/share/zoneinfo/Europe/"$localtime" /etc/localtime
@@ -273,7 +275,7 @@ info "Installation completed successfully!"
 info "The system will reboot in 5 seconds"
 info "Press Ctrl+C to cancel reboot and stay in live environment"
 
-for i in {10..1}; do
+for i in {5..1}; do
     echo -ne "\rRebooting in $i seconds..."
     sleep 1
 done

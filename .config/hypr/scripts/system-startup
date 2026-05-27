@@ -13,6 +13,9 @@ hyprpaper &
 # Launch bar
 hyprpanel &
 
+# Walker backend
+elephant &
+
 # Clipboard history
 wl-paste --type text --watch cliphist store &
 cliphist wipe &
