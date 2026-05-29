@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 # nmtui
+# cd .local/share
 # git clone https://github.com/sikoramodra/dotfiles.git
 # chmod +x ./dotfiles/scripts/arch-setup.sh
 # ./dotfiles/scripts/arch-setup.sh
@@ -12,6 +13,8 @@ RED='\033[0;31m'
 YELLOW='\033[1;33m'
 BLUE='\033[0;34m'
 NC='\033[0m' # No Color
+
+DOTFILES_DIR="$HOME/.local/share/dotfiles"
 
 error() {
     echo -e "${RED}[ERROR]${NC} $1" >&2
@@ -46,6 +49,7 @@ if [ "$(id -u)" = 0 ]; then
     exit 1
 fi
 
+cd "$DOTFILES_DIR"
 clear
 
 ## Packages
@@ -75,8 +79,8 @@ if confirm "Do you want to link dotfiles to system files?"; then
     mkdir -p ~/.local/share/icons
     mkdir -p ~/.config/cava
 
-    cd dotfiles
-    stow .
+    cd "$DOTFILES_DIR"/stow
+    stow -t ~ .
     cd ..
     clear
 fi

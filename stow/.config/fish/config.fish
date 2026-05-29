@@ -64,4 +64,3 @@ alias fm='nemo .'
 fish_add_path "$HOME/go/bin/"
 
 zoxide init --cmd cd fish | source
-
