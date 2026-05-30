@@ -1,4 +1,0 @@
-[binds]
-
-# Edit the current image in Satty and quit the viewer
-<Ctrl+e> = exec satty --filename "$imv_current_file" & ; quit
