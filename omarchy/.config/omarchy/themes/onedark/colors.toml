@@ -1,9 +1,9 @@
-accent = "#89b4fa"
-cursor = "#f5e0dc"
+accent = "#61afef"
+cursor = "#abb2bf"
 foreground = "#abb2bf"
 background = "#282c34"
-selection_foreground = "#1e1e2e"
-selection_background = "#f5e0dc"
+selection_foreground = "#282c34"
+selection_background = "#abb2bf"
 
 color0 = "#282c34"
 color1 = "#e06c75"

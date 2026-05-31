@@ -19,6 +19,22 @@
   "agent": {
     "tool_permissions": {
       "tools": {
+        "terminal": {
+          "always_allow": [
+            {
+              "pattern": "^find\\s+\\.(\\s|$)"
+            },
+            {
+              "pattern": "^sort\\b"
+            },
+            {
+              "pattern": "^head\\b"
+            },
+            {
+              "pattern": "^grep\\b"
+            }
+          ]
+        },
         "search_web": {
           "default": "allow"
         },
@@ -30,9 +46,9 @@
     "default_profile": "write",
     "default_model": {
       "provider": "zed.dev",
-      "model": "gpt-5.5",
+      "model": "gemini-3.1-pro-preview",
       "enable_thinking": true,
-      "effort": "medium",
+      "effort": "HIGH",
     },
     "dock": "right",
     "enabled": true,
