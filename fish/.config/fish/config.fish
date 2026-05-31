@@ -1,12 +1,14 @@
 if status is-interactive
-  # set -U fish_greeting ""
-  # set -gx BROWSER brave
-  # set -gx TERM kitty
-  # set -gx EDITOR nvim
-  # set -gx Lang en_US.UTF-8
+  # Theme
+  source $HOME/.config/fish/themes/onedark.fish
 
-  # ⌁⌁⌁
-  # ➤➤➤
+  # Key bindings
+  set --erase --universal fish_key_bindings
+  set --global fish_key_bindings fish_default_key_bindings
+  # set --global fish_key_bindings fish_vi_key_bindings
+
+  # # The prompt renders vi mode inline on its second line.
+  # function fish_mode_prompt; end
 
   # omf
   source $HOME/.config/fish/functions/fish_prompt.fish

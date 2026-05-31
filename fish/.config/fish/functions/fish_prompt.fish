@@ -2,19 +2,33 @@ function fish_prompt
   # Cache exit status
   set -l last_status $status
 
-  # Just calculate these once, to save a few cycles when displaying the prompt
+  # Just calculate this once, to save a few cycles when displaying the prompt
   if not set -q __fish_prompt_hostname
     set -g __fish_prompt_hostname (hostname|cut -d . -f 1)
   end
+
   if not set -q __fish_prompt_char
     switch (id -u)
       case 0
-	set -g __fish_prompt_char '#'
+        set -g __fish_prompt_char '#'
       case '*'
-	set -g __fish_prompt_char 'λ'
+        set -g __fish_prompt_char 'λ'
     end
   end
-    
+  # set -l prompt_mode
+  # switch $fish_bind_mode
+  #   case default
+  #     set prompt_mode N
+  #   case insert
+  #     set prompt_mode I
+  #   case replace_one replace
+  #     set prompt_mode R
+  #   case visual
+  #     set prompt_mode V
+  #   case '*'
+  #     set prompt_mode '?'
+  # end
+
   # Colors
   set -l normal (set_color normal)
   set -l white (set_color ABB2BF)
@@ -22,7 +36,7 @@ function fish_prompt
   set -l orange (set_color D19A66)
   set -l red (set_color E06C75)
   set -l green (set_color 98C379)
- 
+
   # Configure __fish_git_prompt
   set -g __fish_git_prompt_char_stateseparator ' '
   set -g __fish_git_prompt_color 61AFEF
@@ -32,7 +46,7 @@ function fish_prompt
   set -g __fish_git_prompt_showdirtystate true
   set -g __fish_git_prompt_showuntrackedfiles true
   set -g __fish_git_prompt_showstashstate true
-  set -g __fish_git_prompt_show_informative_status true 
+  set -g __fish_git_prompt_show_informative_status true
 
   set -l current_user (whoami)
 
@@ -48,7 +62,7 @@ function fish_prompt
     echo -n "($cyan"(basename "$VIRTUAL_ENV")"$white)"
   end
   echo -n $white'─'$__fish_prompt_char $normal
+  # echo -n $white'─['$cyan$prompt_mode$white']' $normal
 end
 
 set -g VIRTUAL_ENV_DISABLE_PROMPT 1
-

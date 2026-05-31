@@ -18,37 +18,53 @@
   },
   "agent": {
     "tool_permissions": {
+      "default": "confirm",
       "tools": {
         "terminal": {
+          "default": "confirm",
           "always_allow": [
-            {
-              "pattern": "^find\\s+\\.(\\s|$)"
-            },
-            {
-              "pattern": "^sort\\b"
-            },
-            {
-              "pattern": "^head\\b"
-            },
-            {
-              "pattern": "^grep\\b"
-            }
-          ]
+            { "pattern": "^(ls|pwd|echo)\\b" },
+            { "pattern": "^(find|grep|rg|ag)\\b" },
+            { "pattern": "^(head|tail|cat|less|wc)\\b" },
+            { "pattern": "^git\\s+(status|log|diff|branch|show|ls-files)" },
+            // TODO: personalize
+            { "pattern": "^cargo\\s+(build|test|check|clippy|fmt|run)" },
+            { "pattern": "^npm\\s+(install|test|run|build|start)" },
+            { "pattern": "^(python|python3|pip|pip3|uv|poetry)\\s" },
+            { "pattern": "^(go\\s+(build|test|run|mod))" },
+            { "pattern": "^(make|cmake|ninja)\\b" },
+            { "pattern": "^(tsc|eslint|prettier|black|ruff)\\b" },
+          ],
+          "always_deny": [
+            { "pattern": "rm\\s+-rf" },
+            { "pattern": "sudo\\s" },
+            { "pattern": ":\\!\\s*(rm|dd|mkfs|format)" },
+            { "pattern": "curl\\s+.*\\|\\s*(sh|bash|zsh)" },
+          ],
+          "always_confirm": [
+            { "pattern": "sudo" },
+            { "pattern": "(curl|wget)\\s" },
+            { "pattern": "dd\\b" },
+          ],
         },
-        "search_web": {
-          "default": "allow"
+        "edit_file": {
+          "default": "confirm",
+          "always_deny": [
+            { "pattern": "\\.env" },
+            { "pattern": "\\.(pem|key|ppk|cert)$" },
+            { "pattern": "secrets?/" },
+          ],
         },
-        "fetch": {
-          "default": "allow"
-        }
-      }
+        "search_web": { "default": "allow" },
+        "fetch": { "default": "confirm" },
+      },
     },
     "default_profile": "write",
     "default_model": {
       "provider": "zed.dev",
-      "model": "gemini-3.1-pro-preview",
+      "model": "gpt-5.5",
       "enable_thinking": true,
-      "effort": "HIGH",
+      "effort": "medium",
     },
     "dock": "right",
     "enabled": true,

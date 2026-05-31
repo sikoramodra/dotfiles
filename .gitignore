@@ -1,3 +1,6 @@
+# Cliamp logs
+cliamp/.config/cliamp/cliamp.log
+
 # Fcitx writes this generated keyboard-layout cache.
 fcitx5/.config/fcitx5/conf/cached_layouts
 
