@@ -1,5 +1,13 @@
-# Cliamp logs
-cliamp/.config/cliamp/cliamp.log
+# Cliamp generated files
+cliamp/.config/cliamp/*
+!cliamp/.config/cliamp/config.toml
+
+# Local secrets
+environment.d/.config/environment.d/cliamp-secrets.conf
+
+# Cava generated files
+cava/.config/cava/*
+!cava/.config/cava/config
 
 # Fcitx writes this generated keyboard-layout cache.
 fcitx5/.config/fcitx5/conf/cached_layouts
