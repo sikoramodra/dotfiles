@@ -66,5 +66,9 @@ if status is-interactive
 
   # fish_add_path "$HOME/go/bin/"
 
+  if command -v mise &>/dev/null
+      mise activate fish | source
+  end
+
   zoxide init --cmd cd fish | source
 end

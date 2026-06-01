@@ -7,4 +7,4 @@ SETUVAR fish_cursor_replace:underscore
 SETUVAR fish_cursor_replace_one:underscore
 SETUVAR fish_cursor_visual:block
 SETUVAR fish_greeting:
-SETUVAR fish_user_paths:/usr/lib/qt6/bin\x1e/home/wm/go/bin\x1e/home/wm/\x2elocal/bin
+SETUVAR fish_user_paths:\x1e/home/wm/go/bin\x1e/home/wm/\x2elocal/bin
