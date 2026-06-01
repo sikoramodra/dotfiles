@@ -272,6 +272,9 @@
     "ruff": true,
   },
   "terminal": {
+    "shell": {
+      "program": "fish",
+    },
     "toolbar": {
       "breadcrumbs": false,
     },

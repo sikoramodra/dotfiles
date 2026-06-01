@@ -1,0 +1,10 @@
+[Desktop Entry]
+Categories=Development;
+Comment=Play with APIs, intuitively
+Exec=yaak-app-client
+Icon=/home/wm/.local/share/applications/icons/yaak.svg
+Name=Yaak
+StartupWMClass=yaak-app-client
+Terminal=false
+Type=Application
+GenericName=API Client

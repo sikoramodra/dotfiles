@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Balena Etcher
+Comment=Flash OS images to SD cards and USB drives, safely and easily.
+GenericName=balenaEtcher
+Exec=balena-etcher %U
+Icon=balena-etcher
+Type=Application
+StartupNotify=true
+Categories=Utility;

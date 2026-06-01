@@ -7,5 +7,9 @@ export PATH=$OMARCHY_PATH/bin:$PATH:$HOME/.local/bin
 # Set default terminal and editor
 source ~/.config/uwsm/default
 
+# Set cursor theme
+export HYPRCURSOR_THEME="BreezeX-Dark-hyprcursor"
+export XCURSOR_THEME="BreezeX-Dark"
+
 # Activate mise if present on the system
-# omarchy-cmd-present mise && eval "$(mise activate bash --shims)"
+omarchy-cmd-present mise && eval "$(mise activate bash --shims)"
