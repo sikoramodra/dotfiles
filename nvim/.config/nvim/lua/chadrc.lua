@@ -74,6 +74,7 @@ local M = {
       "pgformatter",
 
       -- Go
+      "gopls",
       "golangci-lint-langserver",
       "gofumpt",
       "gci",

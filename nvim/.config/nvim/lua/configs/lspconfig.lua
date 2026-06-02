@@ -17,6 +17,7 @@ local servers = {
   "yaml",
   "nginx_language_server",
   "postgres_lsp",
+  "gopls",
   "golangci_lint_ls",
   "ty",
   "fish_lsp",

@@ -147,71 +147,171 @@
   "wrap_guides": [80, 100],
   "tab_size": 2,
   "languages": {
+    "Shell Script": {
+      "tab_size": 4,
+      "language_servers": ["bash-language-server"],
+      "formatter": "language_server",
+    },
+    "Lua": {
+      "language_servers": ["lua-language-server"],
+      "formatter": {
+        "external": {
+          "command": "stylua",
+          "arguments": [
+            "--syntax=Lua54",
+            "--respect-ignores",
+            "--stdin-filepath",
+            "{buffer_path}",
+            "-",
+          ],
+        },
+      },
+    },
+    "HTML": {
+      "language_servers": ["vscode-html-language-server", "biome"],
+      "formatter": {
+        "language_server": {
+          "name": "biome",
+        },
+      },
+    },
+    "CSS": {
+      "language_servers": [
+        "vscode-css-language-server",
+        "biome",
+        "tailwindcss-language-server",
+        "unocss-language-server",
+      ],
+      "formatter": {
+        "language_server": {
+          "name": "biome",
+        },
+      },
+    },
     "JavaScript": {
+      "language_servers": ["vtsls", "biome"],
       "formatter": {
         "language_server": {
           "name": "biome",
         },
       },
       "code_actions_on_format": {
-        // "source.fixAll.eslint": true
         "source.fixAll.biome": true,
         "source.organizeImports.biome": true,
       },
     },
     "TypeScript": {
+      "language_servers": ["vtsls", "biome"],
       "formatter": {
         "language_server": {
           "name": "biome",
         },
       },
       "code_actions_on_format": {
-        // "source.fixAll.eslint": true
         "source.fixAll.biome": true,
         "source.organizeImports.biome": true,
       },
     },
     "JSON": {
+      "language_servers": ["json-language-server", "biome"],
       "formatter": {
         "language_server": {
           "name": "biome",
         },
       },
-      "code_actions_on_format": {
-        // "source.fixAll.eslint": true
-        "source.fixAll.biome": true,
-        "source.organizeImports.biome": true,
+    },
+    "JSONC": {
+      "language_servers": ["json-language-server", "biome"],
+      "formatter": {
+        "language_server": {
+          "name": "biome",
+        },
       },
     },
     "Astro": {
+      "language_servers": ["astro-language-server", "biome"],
       "formatter": {
         "language_server": {
           "name": "biome",
         },
       },
       "code_actions_on_format": {
-        // "source.fixAll.eslint": true
         "source.fixAll.biome": true,
         "source.organizeImports.biome": true,
       },
     },
-    // "Svelte": {
-    //   "code_actions_on_format": {
-    //     "source.fixAll.eslint": true
-    //   }
-    // },
+    "Svelte": {
+      "language_servers": ["svelte-language-server", "biome"],
+      "formatter": {
+        "language_server": {
+          "name": "biome",
+        },
+      },
+      "code_actions_on_format": {
+        "source.fixAll.biome": true,
+        "source.organizeImports.biome": true,
+      },
+    },
+    "YAML": {
+      "language_servers": ["yaml-language-server"],
+      "formatter": {
+        "external": {
+          "command": "yamlfmt",
+          "arguments": [
+            "-in",
+            "-formatter",
+            "retain_line_breaks_single=true"
+          ]
+        }
+      }
+    },
+    "SQL": {
+      "tab_size": 4,
+      // "language_servers": ["postgres-language-server"],
+      "formatter": {
+        "external": {
+          "command": "pg_format",
+          "arguments": ["-"]
+        }
+      }
+    },
     "Go": {
       "tab_size": 4,
       "language_servers": ["gopls", "golangci-lint"],
+      "formatter": [
+        {
+          "language_server": {
+            "name": "gopls"
+          }
+        },
+        {
+          "external": {
+            "command": "gci",
+            "arguments": [
+              "write",
+              "{buffer_path}",
+              "--skip-generated",
+              "-s",
+              "standard",
+              "-s",
+              "default"
+            ]
+          }
+        },
+      ]
     },
-    "Shell Script": {
+    "Python": {
       "tab_size": 4,
+      "language_servers": ["ty", "ruff"],
       "formatter": {
-        "external": {
-          "command": "shfmt",
-          "arguments": ["--filename", "{buffer_path}", "--indent", "4"],
+        "language_server": {
+          "name": "ruff",
         },
       },
+      "code_actions_on_format": {
+        "source.fixAll.ruff": true,
+        "source.organizeImports.ruff": true
+      }
     },
     "C++": {
       "tab_size": 4,
@@ -224,23 +324,6 @@
     },
     "XML": {
       "tab_size": 4,
-    },
-    "Python": {
-      "tab_size": 4,
-      "language_servers": ["ty", "ruff"],
-      "formatter": [
-        {
-          "code_action": "source.organizeImports.ruff",
-        },
-        {
-          "code_action": "source.fixAll.ruff",
-        },
-        {
-          "language_server": {
-            "name": "ruff",
-          },
-        },
-      ],
     },
   },
   "autosave": "on_focus_change",

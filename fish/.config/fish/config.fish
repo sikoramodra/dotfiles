@@ -59,10 +59,10 @@ if status is-interactive
   alias ip='ip -color'
 
   # others
-  alias pipes='pipes.sh -p 5 -f 40 R -r 2000'
-  alias icat='kitty +kitten icat'
+  # alias pipes='pipes.sh -p 5 -f 40 R -r 2000'
+  # alias icat='kitty +kitten icat'
   alias neofetch='fastfetch'
-  alias fm='nemo .'
+  # alias fm='nemo .'
 
   # fish_add_path "$HOME/go/bin/"
 
