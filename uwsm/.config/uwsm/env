@@ -1,0 +1,15 @@
+# Changes require a restart to take effect.
+
+# Ensure Omarchy bins are in the path
+export OMARCHY_PATH=$HOME/.local/share/omarchy
+export PATH=$OMARCHY_PATH/bin:$PATH:$HOME/.local/bin
+
+# Set default terminal and editor
+source ~/.config/uwsm/default
+
+# Set cursor theme
+export HYPRCURSOR_THEME="BreezeX-Dark-hyprcursor"
+export XCURSOR_THEME="BreezeX-Dark"
+
+# Activate mise if present on the system
+omarchy-cmd-present mise && eval "$(mise env bash)"

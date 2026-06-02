@@ -1,0 +1,9 @@
+[tools]
+shellcheck = "latest"
+shfmt = "latest"
+stylua = "latest"
+node = "latest"
+yamlfmt = "latest"
+go = "latest"
+python = "latest"
+uv = "latest"

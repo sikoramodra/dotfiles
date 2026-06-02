@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-
-cliphist list | rofi -dmenu -p "   clipboard " -display-columns 2 -no-show-icons -no-sidebar-mode -theme-str 'listview { columns: 1; }' | cliphist decode | wl-copy
