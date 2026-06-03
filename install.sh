@@ -5,7 +5,7 @@
 
 # curl -LO https://raw.githubusercontent.com/sikoramodra/dotfiles/main/install.sh
 # chmod +x install.sh
-# ./install.sh
+# ./install.sh 1
 
 set -euo pipefail
 
@@ -27,58 +27,29 @@ fi
 # CTRL ALT F2
 
 if [ "$STAGE" == 2 ]; then
-    # for VAR in LIST; do
-    #     omadot get hypr
-    #     git reset
-    #     omadot put hypr
-    # done
+    rm -f ~/.local/share/applications/{Alacritty,imv,typora}.desktop
+    rm -f ~/.config/{chromium-flags.conf,mimeapps.list,omarchy.ttf,starship.toml,user-dirs.dirs,xdg-terminals.list}
+    rm -f ~/.bashrc
 
-    rm -rf ~/.config/hypr/
-    omadot put hypr
+    for dir in autostart environment.d fastfetch fcitx5 fontconfig foot git \
+        gtk-3.0 hypr hyprland-preview-share-picker imv kitty mise nvim \
+        omarchy qalculate swayosd uwsm walker waybar wiremix wireplumber; do
+        rm -rf "$HOME/.config/$dir"
+    done
 
-    rm -rf ~/.config/xdg-terminals.list
-    rm -rf ~/.config/wireplumber/
-    rm -rf ~/.config/wiremix/
-    rm -rf ~/.config/waybar/
-    rm -rf ~/.config/walker/
-    rm -rf ~/.config/uwsm/
-    rm -rf ~/.config/user-dirs.dirs
-    rm -rf ~/.config/systemd/
-    rm -rf ~/.config/swayosd/
-    rm -rf ~/.config/starship.toml
-    rm -rf ~/.config/qalculate/
-    rm -rf ~/.config/omarchy.ttf
-    rm -rf ~/.config/omarchy/
-    rm -rf ~/.config/nvim/
-    rm -rf ~/.config/mise/
-    rm -rf ~/.config/mimeapps.list
-    rm -rf ~/.config/kitty/
-    rm -rf ~/.config/imv/
-    rm -rf ~/.config/hyprland-preview-share-picker/
-    rm -rf ~/.config/gtk-3.0/
-    rm -rf ~/.config/git/
-    rm -rf ~/.config/foot/
-    rm -rf ~/.config/fontconfig/
-    rm -rf ~/.config/fcitx5/
-    rm -rf ~/.config/fastfetch/
-    rm -rf ~/.config/environment.d/
-    rm -rf ~/.config/elephant/
-    rm -rf ~/.config/chromium-flags.conf
-    rm -rf ~/.config/btop/
-    rm -rf ~/.bashrc
-    rm -rf ~/.config/autostart/
+    # preserve:
+    # ~/.config/btop/themes/
+    # ~/.config/elephant/menus/
+    rm -f ~/.config/btop/btop.conf
+    rm -f ~/.config/elephant/{calc,desktopapplications,symbols}.toml
 
-    omadot put --all --exclude=applications
+    cd ~/.dotfiles
+    omadot put --all
 
-    rm ~/.local/share/applications/Alacritty.desktop
-    rm ~/.local/share/applications/imv.desktop
-    rm ~/.local/share/applications/typora.desktop
-    omadot put applications
-
-    # omarchy-theme-set Onedark
-
-    # reboot
+    omarchy-theme-set Onedark
 fi
+
+# Reboot
 
 if [ "$STAGE" == 3 ]; then
     omarchy-default-browser brave-origin
