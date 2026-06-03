@@ -18,9 +18,8 @@ if [ "$STAGE" == 1 ]; then
     omarchy-install-browser brave-origin
     sudo pacman -S --noconfirm stow fish adobe-source-code-pro-fonts tela-circle-icon-theme-blue
 
-    git clone https://github.com/sikoramodra/dotfiles.git ~/.dotfiles
-    cd ~/.dotfiles
     curl -fsSL https://raw.githubusercontent.com/tomhayes/omadot/main/install.sh | bash
+    git clone https://github.com/sikoramodra/dotfiles.git ~/.dotfiles
 fi
 
 # Left-Top corner > System > Logout
@@ -70,14 +69,49 @@ if [ "$STAGE" == 3 ]; then
     # [dev]
     sudo pacman -S --noconfirm nginx tree-sitter-cli valkey postgresql act delve go go-tools pgformatter
     omarchy-install-browser zen
-    omarchy-pkg-aur-add beekeeper-studio-bin yaak-bin bruno-bin etcher-bina simplenote-electron-bin
+    omarchy-pkg-aur-add beekeeper-studio-bin yaak-bin bruno-bin etcher-bin simplenote-electron-bin
     sudo pacman -Rns --noconfirm alacritty bruno-bin-debug simplenote-electron-bin-debug
+
+    cd ~/.dotfiles
+    git restore hypr/.config/hypr/bindings.conf
+    rm -f hypr/.config/hypr/bindings.conf.bak
+
+    mise i
 fi
 
+# Reboot
+
 # Manual:
+# rm ~/install.sh
+#
 # nvim :MasonInstallAll :TSInstallAll
+#
+# Balena Etcher > Settings > turn off anonymous reports
+#
+# Bruno > Theme > Dark Monochrome
+# Bruno > Editor Font > Source Code Pro
+# Bruno > turn off automatic updates, ~telemetry
+#
+# Files > show hidden files
+# Files > Preferences > turn on sort folders before files
+#
+# Kdenlive > Color Scheme > Kvantum
+#
+# LocalSend > Color > System
 #
 # copy cliamp ytmusic secret
 #
-# brave://flags/#enable-webrtc-allow-input-volume-adjustment
-# sync - have sync code -> Localsend
+# Print Settings > Add
+#
+# SimpleNote > Login > turn on menu bar hide automatically, turn off notify on remote changes, zoom in/out
+#
+# Yaak > Dark Theme > Atom One Dark
+# Yaak > Manual update behavior, turn off check for notifications
+# Yaak > Editor Font > Source Code Pro
+# Yaak > Vim Keymap, turn off wrap lines, turn on colorize HTTP methods
+# Yaak > turn on hide window controls
+#
+# ssh-keygen and
+# git remote set-url origin git@github.com:sikoramodra/dotfiles.git
+#
+# Brave
