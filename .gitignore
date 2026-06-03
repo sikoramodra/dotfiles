@@ -14,6 +14,7 @@ fcitx5/.config/fcitx5/conf/cached_layouts
 
 # Omarchy generates the active theme/current state from selected themes.
 omarchy/.config/omarchy/current/
+zed/.config/zed/themes/omazed.json
 
 # Omarchy-managed absolute symlinks; track the source configs/themes instead.
 btop/.config/btop/themes
