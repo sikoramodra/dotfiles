@@ -98,6 +98,8 @@ fi
 # Kdenlive > Color Scheme > Kvantum
 #
 # LocalSend > Color > System
+# LocalSend > Minimize to tray > on
+# LocalSend > Auto Finish > on
 #
 # copy cliamp ytmusic secret
 #
