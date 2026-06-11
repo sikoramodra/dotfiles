@@ -80,6 +80,12 @@
     "metrics": false,
   },
   "lsp": {
+    "gopls": {
+      "initialization_options": {
+        "gofumpt": true,
+        "local": "standard"
+      },
+    },
     "golangci-lint": {
       "initialization_options": {
         "command": [
@@ -97,12 +103,26 @@
         "require_config_file": true,
       },
     },
-    "basedpyright": {
+    "tailwindcss-language-server": {
       "settings": {
-        "python": {
-          "pythonPath": ".venv/bin/python",
+        "includeLanguages": {
+          "astro": "html"
+          // "svelte": "html"
         },
-      },
+        "experimental": {
+          "classRegex": [
+            "class=\"([^\"]*)\"",
+            "class='([^']*)'",
+            "class:list=\"{([^}]*)}\"",
+            "class:list='{([^}]*)}'"
+            // "class=\"([^\"]*)\"",
+            //  "class='([^']*)'",
+            //  "class:\\s*([^\\s{]+)",
+            //  "\\{\\s*class:\\s*\"([^\"]*)\"",
+            //  "\\{\\s*class:\\s*'([^']*)'"
+          ]
+        }
+      }
     },
     "ruff": {
       "initialization_options": {
@@ -148,7 +168,6 @@
   "tab_size": 2,
   "languages": {
     "Shell Script": {
-      "tab_size": 4,
       "language_servers": ["bash-language-server"],
       "formatter": "language_server",
     },
@@ -180,7 +199,7 @@
         "vscode-css-language-server",
         "biome",
         "tailwindcss-language-server",
-        "unocss-language-server",
+        // "unocss-language-server",
       ],
       "formatter": {
         "language_server": {
@@ -229,7 +248,12 @@
       },
     },
     "Astro": {
-      "language_servers": ["astro-language-server", "biome"],
+      "language_servers": [
+        "astro-language-server",
+        "biome",
+        "tailwindcss-language-server",
+        // "unocss-language-server",
+      ],
       "formatter": {
         "language_server": {
           "name": "biome",
@@ -241,7 +265,12 @@
       },
     },
     "Svelte": {
-      "language_servers": ["svelte-language-server", "biome"],
+      "language_servers": [
+        "svelte-language-server",
+        "biome",
+        "tailwindcss-language-server",
+        // "unocss-language-server",
+      ],
       "formatter": {
         "language_server": {
           "name": "biome",
@@ -278,27 +307,11 @@
     "Go": {
       "tab_size": 4,
       "language_servers": ["gopls", "golangci-lint"],
-      "formatter": [
-        {
-          "language_server": {
-            "name": "gopls"
-          }
+      "formatter": {
+        "language_server": {
+          "name": "gopls"
         },
-        {
-          "external": {
-            "command": "gci",
-            "arguments": [
-              "write",
-              "{buffer_path}",
-              "--skip-generated",
-              "-s",
-              "standard",
-              "-s",
-              "default"
-            ]
-          }
-        },
-      ]
+      },
     },
     "Python": {
       "tab_size": 4,

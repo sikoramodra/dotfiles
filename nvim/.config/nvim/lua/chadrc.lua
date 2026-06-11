@@ -10,7 +10,7 @@ local M = {
   },
   ui = {
     cmp = {
-      style = "atom"
+      style = "atom",
     },
   },
   nvdash = {
@@ -94,7 +94,7 @@ local M = {
       -- "cmake-language-server",
       -- "qmlls"
     },
-    skip = {}
+    skip = {},
   },
 }
 
