@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Name=Ente Auth
+GenericName=Ente Authenticator
+Icon=/home/wm/.local/share/applications/icons/enteauth.png
+Exec=enteauth %U
+MimeType=x-scheme-handler/enteauth;
+Categories=Utility;
+Keywords=Authentication;2FA;
+StartupNotify=false
+StartupWMClass=io.ente.auth
