@@ -67,7 +67,7 @@ if [ "$STAGE" == 3 ]; then
   # dconf dump /org/gnome/desktop/interface
 
   # [dev]
-  sudo pacman -S --noconfirm nginx tree-sitter-cli valkey postgresql act delve go go-tools pgformatter
+  sudo pacman -S --noconfirm nginx tree-sitter-cli valkey postgresql act delve uv go go-tools pgformatter
   omarchy-install-browser zen
   omarchy-pkg-aur-add beekeeper-studio-bin yaak-bin bruno-bin etcher-bin simplenote-electron-bin
   sudo pacman -Rns --noconfirm alacritty bruno-bin-debug simplenote-electron-bin-debug
@@ -78,9 +78,11 @@ if [ "$STAGE" == 3 ]; then
 
   mise i
 
+  omarchy-font-set "Source Code Pro"
+
   # go telemetry off
   # omarchy-pkg-aur-add bitwarden-bin ente-auth-bin
-  # vim ~/.local/share/keyrings/Default_keyring.keyring - ente auth in single line
+  # vim ~/.local/share/keyrings/Default_keyring.keyring - ente auth secret in single line
 fi
 
 # Reboot
@@ -128,4 +130,4 @@ fi
 #
 # Brave
 #
-# pac -S meson
+# pac -S usbutils meson opencode

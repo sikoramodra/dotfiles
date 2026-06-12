@@ -70,6 +70,14 @@
     "enabled": true,
     "button": true,
   },
+  "agent_servers": {
+    "opencode": {
+      "default_config_options": {
+        "mode": "plan"
+      },
+      "type": "registry"
+    }
+  },
   "vim_mode": true,
   "vim": {
     "use_system_clipboard": "always",
