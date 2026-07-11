@@ -11,6 +11,9 @@
     "context": "vim_mode == normal && !menu",
     "bindings": {
       "ctrl-e": "file_finder::Toggle",
+      "g \\": "editor::ToggleInlineDiagnostics",
+      "g ]": "editor::GoToDiagnostic",
+      "g [": "editor::GoToPreviousDiagnostic",
     },
   },
   {

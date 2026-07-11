@@ -16,7 +16,8 @@ if [ "$STAGE" == 1 ]; then
   omarchy-install-terminal kitty
   omarchy-install-zed
   omarchy-install-browser brave-origin
-  sudo pacman -S --noconfirm stow fish adobe-source-code-pro-fonts tela-circle-icon-theme-blue
+  sudo pacman -S --noconfirm stow zsh adobe-source-code-pro-fonts tela-circle-icon-theme-blue
+  omarchy-pkg-aur-add zimfw
 
   curl -fsSL https://raw.githubusercontent.com/tomhayes/omadot/main/install.sh | bash
   git clone https://github.com/sikoramodra/dotfiles.git ~/.dotfiles
@@ -94,10 +95,12 @@ fi
 #
 # Balena Etcher > Settings > turn off anonymous reports
 #
+# Bitwarden > Timeout > Never
 # Bitwarden > unlock with system authentication > on
 # Bitwarden > clear clipboard > 2min
 # Bitwarden > minimize when copying > off
 # Bitwarden > allow browser integration > on
+# Bitwarden > start automatically on login > off
 #
 # Bruno > Theme > Dark Monochrome
 # Bruno > Editor Font > Source Code Pro
@@ -130,4 +133,4 @@ fi
 #
 # Brave
 #
-# pac -S usbutils meson opencode
+# pac -S usbutils meson

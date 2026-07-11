@@ -62,9 +62,9 @@
     "default_profile": "write",
     "default_model": {
       "provider": "zed.dev",
-      "model": "gpt-5.5",
+      "model": "gemini-3.5-flash",
       "enable_thinking": true,
-      "effort": "medium",
+      "effort": "MEDIUM",
     },
     "dock": "right",
     "enabled": true,
@@ -88,6 +88,21 @@
     "metrics": false,
   },
   "lsp": {
+    "vtsls": {
+      "settings": {
+        "typescript": {
+          "updateImportsOnFileMove": {
+            "enabled": "always"
+          }
+        },
+        "javascript": {
+          "updateImportsOnFileMove": {
+            "enabled": "always"
+          }
+        }
+      },
+      "enable_lsp_tasks": true
+    },
     "gopls": {
       "initialization_options": {
         "gofumpt": true,
@@ -379,7 +394,7 @@
   },
   "terminal": {
     "shell": {
-      "program": "fish",
+      "program": "zsh",
     },
     "toolbar": {
       "breadcrumbs": false,
