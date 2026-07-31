@@ -47,7 +47,7 @@
   "scrollbar": {
     "cursors": false,
   },
-  "auto_signature_help": true,
+  "auto_signature_help": false,
   "use_smartcase_search": true,
   "vim": {
     "use_smartcase_find": true,
@@ -155,7 +155,7 @@
       },
     },
     "JavaScript": {
-      "language_servers": ["vtsls", "biome", "..."],
+      "language_servers": ["vtsls", "biome", "!typescript-language-server", "..."],
       "formatter": {
         "language_server": {
           "name": "biome",
@@ -167,7 +167,7 @@
       },
     },
     "TypeScript": {
-      "language_servers": ["vtsls", "biome", "..."],
+      "language_servers": ["vtsls", "biome", "!typescript-language-server", "..."],
       "formatter": {
         "language_server": {
           "name": "biome",
@@ -199,6 +199,7 @@
         "astro-language-server",
         "biome",
         "tailwindcss-language-server",
+        "!typescript-language-server",
         "...",
       ],
       "formatter": {
@@ -216,6 +217,7 @@
         "svelte-language-server",
         "biome",
         "tailwindcss-language-server",
+        "!typescript-language-server",
         "...",
       ],
       "formatter": {
@@ -286,10 +288,7 @@
       "tab_size": 4,
     },
     "QML": {
-      "tab_size": 4,
-    },
-    "XML": {
-      "tab_size": 4,
+      "tab_size": 2,
     },
   },
 

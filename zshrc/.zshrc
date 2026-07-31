@@ -31,6 +31,9 @@ setopt NO_HASH_DIRS
 # setopt MENU_COMPLETE
 # setopt AUTO_MENU
 
+# Include hidden files in completions
+setopt GLOB_DOTS
+
 # Don't beep on errors
 unsetopt BEEP
 
@@ -64,7 +67,7 @@ zstyle ':completion:*:git-checkout:*' sort false
 # NOTE: don't use escape sequences (like '%F{red}%d%f') here, fzf-tab will ignore them
 # zstyle ':completion:*:descriptions' format '[%d]'
 # set list-colors to enable filename colorizing
-zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 # force zsh not to show completion menu, which allows fzf-tab to capture the unambiguous prefix
 zstyle ':completion:*' menu no
 # To make fzf-tab follow FZF_DEFAULT_OPTS.
@@ -128,6 +131,15 @@ GWA() {
 
   git worktree add -b "$branch" "$wt_path"
   mise trust "$wt_path"
+
+  # Sandbox the worktree for agentic AI safety (using sbx/Docker Sandboxes)
+  # Runs the worktree directory in an isolated microVM sandbox
+  if command -v sbx >/dev/null 2>&1; then
+    sbx run --dir "$wt_path" --name "${base}--${branch}" || echo "Warning: sbx sandbox start failed"
+  else
+    echo "Warning: sbx not found. Install Docker Sandboxes for worktree sandboxing."
+  fi
+
   cd "$wt_path"
 }
 

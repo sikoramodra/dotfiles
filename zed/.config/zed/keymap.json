@@ -55,8 +55,6 @@
 			"alt-j": "editor::MoveLineDown",
 			// Searching
 			"space space": "file_finder::Toggle",
-      "shift shift": "project_symbols::Toggle",
-      "ctrl ctrl": "outline::Toggle",
       "space /": "workspace::NewSearch",
       // Git operations
       "space g g": "git_panel::ToggleFocus",
@@ -89,6 +87,7 @@
 			"g i": "editor::GoToImplementation",
 			"g t": "editor::GoToTypeDefinition",
 			"g K": "editor::ShowSignatureHelp",
+			"K": "editor::ShowSignatureHelp",
 			"] d": "editor::GoToDiagnostic",
 			"[ d": "editor::GoToPreviousDiagnostic",
 			// Go to file
@@ -98,8 +97,11 @@
       "space d b": "editor::ToggleBreakpoint",
       // "space d B": "editor::EditConditionalBreakpoint",
       "space d l": "editor::EditLogBreakpoint",
+      // Symbols search
+      "space s s": "outline::Toggle",
+      "space s S": "project_symbols::Toggle",
       // Search selected term
-      "space s s": "pane::DeploySearch",
+      "space s w": "pane::DeploySearch",
       "space s r": ["pane::DeploySearch", { "replace_enabled": true }],
       // Clear all notifications
       "space s n d": "workspace::ClearAllNotifications",
@@ -262,7 +264,8 @@
       "a": "project_panel::NewFile",
       "A": "project_panel::NewDirectory",
       "r": "project_panel::Rename",
-      "d": "project_panel::Delete",
+      "d": "project_panel::Trash",
+      "D": "project_panel::Delete",
       "x": "project_panel::Cut",
       "c": "project_panel::Copy",
       "p": "project_panel::Paste",
@@ -289,6 +292,7 @@
 	{
 		"context": "Terminal",
 		"bindings": {
+		  "escape escape": null,
 			"ctrl-h": "workspace::ActivatePaneLeft",
 			// "ctrl-l": "workspace::ActivatePaneRight", FIXME: breaks zsh clear
 			"ctrl-k": "workspace::ActivatePaneUp",

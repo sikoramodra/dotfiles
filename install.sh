@@ -134,3 +134,9 @@ fi
 # Brave
 #
 # pac -S usbutils meson
+# omarchy-pkg-aur-add docker-sbx
+
+# ollama ollama-vulkan radeontop
+# qwen3:4b
+
+# TODO: pi setup ui
