@@ -133,8 +133,9 @@ fi
 #
 # Brave
 #
-# pac -S usbutils meson
+# pac -S usbutils meson mkcert
 # omarchy-pkg-aur-add docker-sbx
+# mkcert -install
 
 # ollama ollama-vulkan radeontop
 # qwen3:4b

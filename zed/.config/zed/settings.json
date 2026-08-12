@@ -291,6 +291,9 @@
       "tab_size": 2,
     },
   },
+  "file_types": {
+    "env": [".env.*"]
+  },
 
 
   // LSP

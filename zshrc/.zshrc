@@ -117,6 +117,9 @@ alias neofetch='fastfetch'
 alias pac='sudo pacman'
 alias unlock='sudo rm /var/lib/pacman/db.lck'
 
+# Git hepler
+alias Ghelp='nvim ~/.local/share/zim/modules/git/init.zsh'
+
 ### Git worktree helpers ###
 # Create a new worktree and branch from within current git directory.
 GWA() {
