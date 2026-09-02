@@ -1,21 +1,15 @@
 # Cliamp generated files
-cliamp/.config/cliamp/*
-!cliamp/.config/cliamp/config.toml
-
-# Local secrets
-environment.d/.config/environment.d/cliamp-secrets.conf
+.config/cliamp/*
+!.config/cliamp/config.toml.tmpl
 
 # Cava generated files
-cava/.config/cava/*
-!cava/.config/cava/config
+.config/cava/*
+!.config/cava/config
 
-# Fcitx writes this generated keyboard-layout cache.
-fcitx5/.config/fcitx5/conf/cached_layouts
+# Herdr generated files
+.config/herdr/*
+!.config/herdr/config.toml
 
-# Omarchy generates the active theme/current state from selected themes.
-omarchy/.config/omarchy/current/
-zed/.config/zed/themes/omazed.json
-
-# Omarchy-managed absolute symlinks; track the source configs/themes instead.
-btop/.config/btop/themes
-elephant/.config/elephant/menus
+# Omarchy-managed symlinks
+.config/btop/themes
+.config/zed/themes

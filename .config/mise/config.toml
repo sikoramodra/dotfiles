@@ -1,0 +1,11 @@
+[tools]
+shellcheck = "latest"
+shfmt = "latest"
+stylua = "latest"
+node = "latest"
+pnpm = "10"
+yamlfmt = "latest"
+"pipx:nginx-language-server" = "latest"
+"github:hadolint/hadolint" = "latest"
+"github:dotenv-linter/dotenv-linter" = "latest"
+pi = "latest"

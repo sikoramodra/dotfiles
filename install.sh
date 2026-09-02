@@ -5,93 +5,55 @@
 
 # curl -LO https://raw.githubusercontent.com/sikoramodra/dotfiles/main/install.sh
 # chmod +x install.sh
-# ./install.sh 1
+# ./install.sh
 
 set -euo pipefail
 
-STAGE="$1"
+omarchy-install-terminal kitty
+omarchy-install-terminal foot
 
-if [ "$STAGE" == 1 ]; then
-  omarchy-install-terminal foot
-  omarchy-install-terminal kitty
-  omarchy-install-zed
-  omarchy-install-browser brave-origin
-  sudo pacman -S --noconfirm stow zsh adobe-source-code-pro-fonts tela-circle-icon-theme-blue
-  omarchy-pkg-aur-add zimfw
+omarchy-install-editor-zed
 
-  curl -fsSL https://raw.githubusercontent.com/tomhayes/omadot/main/install.sh | bash
-  git clone https://github.com/sikoramodra/dotfiles.git ~/.dotfiles
-fi
+omarchy-install-browser brave-origin
+omarchy-default-browser brave-origin
 
-# Left-Top corner > System > Logout
-# CTRL ALT F2
-# ./install.sh 2
+sudo pacman -S --noconfirm stow zsh adobe-source-code-pro-fonts
+omarchy-font-set "Source Code Pro"
+omarchy-pkg-aur-add zimfw
 
-if [ "$STAGE" == 2 ]; then
-  rm -f ~/.local/share/applications/{Alacritty,imv,typora}.desktop
-  rm -f ~/.config/{chromium-flags.conf,mimeapps.list,omarchy.ttf,starship.toml,user-dirs.dirs,xdg-terminals.list,brave-origin-beta-flags.conf}
-  rm -f ~/.bashrc
+git clone https://github.com/sikoramodra/dotfiles.git ~/.dotfiles
 
-  for dir in autostart environment.d fastfetch fcitx5 fontconfig foot git \
-    gtk-3.0 hypr hyprland-preview-share-picker imv kitty mise nvim omarchy \
-    qalculate swayosd uwsm walker waybar wiremix wireplumber zed; do
-    rm -rf "$HOME/.config/$dir"
-  done
+omarchy-remove-preinstalls
+sudo pacman -S --noconfirm tela-circle-icon-theme-blue cliamp lazydocker pinta obs-studio kdenlive gimp gparted xorg-xhost 7zip cava figlet gnome-calculator
+omarchy-tui-install Docker lazydocker float file:///usr/share/icons/Tela-circle-blue/scalable/apps/docker.svg
+omarchy-setup-security-sudoless-docker
 
-  # preserve:
-  # ~/.config/btop/themes/
-  # ~/.config/elephant/menus/
-  rm -f ~/.config/btop/btop.conf
-  rm -f ~/.config/elephant/{calc,desktopapplications,symbols}.toml
+omarchy-pkg-aur-add breezex-cursor-theme
+gsettings set org.gnome.desktop.interface cursor-theme 'BreezeX-Dark'
 
-  cd ~/.dotfiles
-  omadot put --all
+cd ~/.dotfiles
+stow --adopt .
 
-  omarchy-theme-set Onedark
-fi
+omarchy-theme-set Onedark
 
-# Reboot
-# ./install.sh 3
+rm -rf ~/.claude ~/.codex ~/Work
 
-if [ "$STAGE" == 3 ]; then
-  omarchy-default-browser brave-origin
+sudo pacman -S --noconfirm nginx valkey postgresql act delve uv go go-tools pgformatter usbutils meson mkcert
+omarchy-pkg-aur-add beekeeper-studio-bin yaak-bin bruno-bin etcher-bin simplenote-electron-bin
+mkcert -install
 
-  omarchy-remove-preinstalls
-  sudo pacman -S --noconfirm cliamp lazydocker pinta obs-studio kdenlive gimp gparted xorg-xhost 7zip cava figlet
-  # https://github.com/bjarneo/cliamp/blob/main/docs/youtube-music.md
-  omarchy-tui-install Docker lazydocker float file:///usr/share/icons/Tela-circle-blue/scalable/apps/docker.svg
+go telemetry off
+sudo pacman -S --noconfirm bitwarden
+omarchy-pkg-aur-add ente-auth-bin
+# n ~/.local/share/keyrings/Default_keyring.keyring - ente auth secret in single line
 
-  rm -rf ~/.agents ~/.claude ~/.codex ~/.pi ~/Work
+mise prune
 
-  omarchy-pkg-aur-add breezex-cursor-theme
-  gsettings set org.gnome.desktop.interface cursor-theme 'BreezeX-Dark'
-  # dconf dump /org/gnome/desktop/interface
-
-  # [dev]
-  sudo pacman -S --noconfirm nginx tree-sitter-cli valkey postgresql act delve uv go go-tools pgformatter
-  omarchy-install-browser zen
-  omarchy-pkg-aur-add beekeeper-studio-bin yaak-bin bruno-bin etcher-bin simplenote-electron-bin
-  sudo pacman -Rns --noconfirm alacritty bruno-bin-debug simplenote-electron-bin-debug
-
-  cd ~/.dotfiles
-  git restore hypr/.config/hypr/bindings.conf
-  rm -f hypr/.config/hypr/bindings.conf.bak
-
-  mise i
-
-  omarchy-font-set "Source Code Pro"
-
-  # go telemetry off
-  # omarchy-pkg-aur-add bitwarden-bin ente-auth-bin
-  # vim ~/.local/share/keyrings/Default_keyring.keyring - ente auth secret in single line
-fi
+nvim --headless -c "autocmd User LazyDone MasonInstallAll" -c "TSInstallAll" +qall
 
 # Reboot
 
 # Manual:
-# rm ~/install.sh
-#
-# nvim :MasonInstallAll :TSInstallAll
 #
 # Balena Etcher > Settings > turn off anonymous reports
 #
@@ -109,16 +71,12 @@ fi
 # Files > show hidden files
 # Files > Preferences > turn on sort folders before files
 #
-# Kdenlive > Color Scheme > Kvantum
-#
 # LocalSend > Color > System
 # LocalSend > Minimize to tray > on
 # LocalSend > Autostart after login > off
 # LocalSend > Auto Finish > on
 #
-# copy cliamp ytmusic secret
-#
-# Print Settings > Add
+# Cliamp > ytmusic secret
 #
 # SimpleNote > Login > turn on menu bar hide automatically, turn off notify on remote changes, zoom in/out
 #
@@ -128,16 +86,10 @@ fi
 # Yaak > Vim Keymap, turn off wrap lines, turn on colorize HTTP methods
 # Yaak > turn on hide window controls
 #
-# ssh-keygen and
-# git remote set-url origin git@github.com:sikoramodra/dotfiles.git
-#
 # Brave
 #
-# pac -S usbutils meson mkcert
-# omarchy-pkg-aur-add docker-sbx
-# mkcert -install
-
-# ollama ollama-vulkan radeontop
-# qwen3:4b
-
-# TODO: pi setup ui
+# ssh-keygen && cat ~/.ssh/id_ed25519.pub
+# brave-origin https://github.com/settings/ssh/new
+# git remote set-url origin git@github.com:sikoramodra/dotfiles.git
+#
+# rm ~/install.sh
