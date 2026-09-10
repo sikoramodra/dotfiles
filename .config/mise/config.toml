@@ -9,3 +9,6 @@ yamlfmt = "latest"
 "github:hadolint/hadolint" = "latest"
 "github:dotenv-linter/dotenv-linter" = "latest"
 pi = "latest"
+
+[settings.upgrade]
+auto_prune = false

@@ -49,11 +49,11 @@ omarchy-pkg-aur-add ente-auth-bin
 
 mise prune
 
-nvim --headless -c "autocmd User LazyDone MasonInstallAll" -c "TSInstallAll" +qall
-
 # Reboot
 
 # Manual:
+#
+# nvim :MasonInstallAll :TSInstallAll
 #
 # Balena Etcher > Settings > turn off anonymous reports
 #

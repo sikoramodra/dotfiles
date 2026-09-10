@@ -1,3 +1,3 @@
 ### Preview
 
-![preview](omarchy/.config/omarchy/themes/onedark/preview.png)
+![preview](.config/omarchy/themes/onedark/preview.png)
