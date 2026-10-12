@@ -71,6 +71,7 @@
       "space e": "project_panel::ToggleFocus",
       "space f f": "file_finder::Toggle",
       "space f p": "projects::OpenRecent",
+      "space f n": "workspace::Open",
       "space f b": "tab_switcher::ToggleAll",
       "space f t": "workspace::NewTerminal",
       "space f T": "workspace::OpenInTerminal",
