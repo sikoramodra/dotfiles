@@ -11,4 +11,3 @@ yamlfmt = "latest"
 pi = "latest"
 
 [settings.upgrade]
-auto_prune = false

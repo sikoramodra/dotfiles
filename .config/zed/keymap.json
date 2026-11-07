@@ -94,6 +94,11 @@
 			// Go to file
       "g f": "editor::OpenExcerpts",
       // Debug
+      "space d d": "debugger::Start",
+      "space d s": "debugger::StepOver",
+      "space d c": "debugger::Continue",
+      "space d r": "debugger::Rerun",
+      "space d `": "debugger::FocusTerminal",
       "space d t": "debug_panel::ToggleFocus",
       "space d b": "editor::ToggleBreakpoint",
       // "space d B": "editor::EditConditionalBreakpoint",
