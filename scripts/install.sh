@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# https://raw.githubusercontent.com/sikoramodra/dotfiles/refs/heads/arch/install
-# curl -LO https://raw.githubusercontent.com/sikoramodra/dotfiles/main/install.sh
+# https://raw.githubusercontent.com/sikoramodra/dotfiles/refs/heads/arch/scripts/install.sh
+# curl -LO https://raw.githubusercontent.com/sikoramodra/dotfiles/main/scripts/install.sh
 # chmod +x install.sh
 # ./install.sh
 
@@ -16,7 +16,7 @@ LOCALE2="pl_PL.UTF-8 UTF-8"
 LANG="en_US.UTF-8"
 KEYMAP="pl"
 HOSTNAME="Arch"
-USER="wm"
+USERNAME="wm"
 
 set -euo pipefail # Exit on error, undefined variables, and pipe failures
 
@@ -213,7 +213,7 @@ while confirm "Do you want to run pacstrap?"; do
   pacman -Sy --noconfirm archlinux-keyring
   pacstrap -K /mnt \
     base base-devel linux linux-firmware linux-headers \
-    btrfs-progs lvm2 cryptsetup snapper snap-pac zram-generator \
+    btrfs-progs lvm2 cryptsetup zram-generator \
     networkmanager neovim git openssh \
     man-db man-pages texinfo \
     dosfstools efibootmgr limine \
@@ -258,17 +258,25 @@ EOF"
   info "Setting root password"
   arch-chroot /mnt passwd root
 
-  info "Creating user: $USER"
-  arch-chroot /mnt useradd -m -G wheel,video -s /bin/bash "$USER"
+  info "Creating user: $USERNAME"
+  arch-chroot /mnt useradd -m -G wheel,video -s /bin/bash "$USERNAME"
 
-  info "Setting password for user: $USER"
-  arch-chroot /mnt passwd "$USER"
+  info "Setting password for user: $USERNAME"
+  arch-chroot /mnt passwd "$USERNAME"
+
+  # Auto-login on tty1
+  info "Configuring auto-login on tty1..."
+  arch-chroot /mnt mkdir -p /etc/systemd/system/getty@tty1.service.d
+  arch-chroot /mnt tee /etc/systemd/system/getty@tty1.service.d/autologin.conf >/dev/null <<EOF
+[Service]
+ExecStart=
+ExecStart=-/usr/bin/agetty --noreset --noclear --autologin $USERNAME - \${TERM}
+EOF
 
   # Sudo setup
   info "Configuring sudo access..."
   arch-chroot /mnt bash -c "echo '%wheel ALL=(ALL:ALL) ALL' > /etc/sudoers.d/10-wheel"
   arch-chroot /mnt chmod 440 /etc/sudoers.d/10-wheel
-  # arch-chroot /mnt bash -c "echo '%wheel ALL=(ALL:ALL) ALL' >> /etc/sudoers"
 
   # Network setup
   info "Enabling network services..."
@@ -283,11 +291,11 @@ compression-algorithm = zstd
 swap-priority = 100
 EOF
 
-  # initramfs: LUKS (encrypt) before filesystems, keymap for the passphrase prompt.
+  # Hooks
   info "Configuring initramfs hooks..."
   mkdir -p /mnt/etc/mkinitcpio.conf.d
-  cat >/mnt/etc/mkinitcpio.conf.d/10-luks-btrfs.conf <<'EOF'
-HOOKS=(base udev autodetect microcode modconf kms keyboard keymap consolefont block encrypt filesystems)
+  cat >/mnt/etc/mkinitcpio.conf.d/10-hooks.conf <<'EOF'
+HOOKS=(base udev keyboard autodetect microcode modconf kms keymap consolefont block encrypt filesystems)
 EOF
   arch-chroot /mnt mkinitcpio -P
 
@@ -297,26 +305,16 @@ EOF
   cp /mnt/usr/share/limine/BOOTX64.EFI /mnt/boot/EFI/limine/BOOTX64.EFI
   cp /mnt/usr/share/limine/BOOTX64.EFI /mnt/boot/EFI/BOOT/BOOTX64.EFI
 
-  # Keep the EFI binary current when the limine package is upgraded
-  mkdir -p /mnt/etc/pacman.d/hooks
-  cat >/mnt/etc/pacman.d/hooks/90-limine-deploy.hook <<'EOF'
-[Trigger]
-Operation = Install
-Operation = Upgrade
-Type = Package
-Target = limine
+  ROOT_PARTUUID=$(blkid -s PARTUUID -o value "$PART_ROOT")
+  CMDLINE="cryptdevice=PARTUUID=${ROOT_PARTUUID}:cryptroot:allow-discards root=/dev/mapper/cryptroot rootflags=subvol=@ rootfstype=btrfs rw zswap.enabled=0"
 
-[Action]
-Description = Deploying Limine EFI binary to the ESP...
-When = PostTransaction
-Exec = /usr/bin/sh -c '/usr/bin/install -Dm644 /usr/share/limine/BOOTX64.EFI /boot/EFI/limine/BOOTX64.EFI && /usr/bin/install -Dm644 /usr/share/limine/BOOTX64.EFI /boot/EFI/BOOT/BOOTX64.EFI'
+  mkdir -p /mnt/etc/default
+  cat >/mnt/etc/default/limine <<EOF
+ESP_PATH=/boot
+KERNEL_CMDLINE[default]+=${CMDLINE}
 EOF
 
-  CRYPT_PART=$(cryptsetup status cryptroot | awk '/device:/ {print $2}')
-  LUKS_UUID=$(blkid -s UUID -o value "$CRYPT_PART")
-  CMDLINE="cryptdevice=UUID=${LUKS_UUID}:cryptroot:allow-discards root=/dev/mapper/cryptroot rootflags=subvol=@ rootfstype=btrfs rw"
-
-  # Limine config
+  # Temp Limine config
   cat >/mnt/boot/limine.conf <<EOF
 timeout: 0
 
@@ -336,11 +334,6 @@ EOF
   # UEFI boot entry
   efibootmgr --create --disk "$DRIVE" --part 1 \
     --label "Limine" --loader '\EFI\limine\BOOTX64.EFI'
-
-  # LATER: yay -S limine-mkinitcpio-hook limine-snapper-sync #snap-pac,snapper
-  # LATER: sudo limine-mkinitcpio
-  # LATER: sudo systemctl enable --now limine-snapper-sync.service
-  # LATER: TTY + uwsm + plymouth(LUKS password prompt + boot splash)
 
   clear
 fi

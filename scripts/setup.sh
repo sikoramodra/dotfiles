@@ -2,8 +2,8 @@
 
 # nmtui
 # git clone https://github.com/sikoramodra/dotfiles.git
-# chmod +x ./dotfiles/setup
-# ./dotfiles/setup
+# chmod +x ./dotfiles/scripts/setup.sh
+# ./dotfiles/scripts/setup.sh
 
 set -euo pipefail # Exit on error, undefined variables, and pipe failures
 
@@ -40,133 +40,163 @@ confirm() {
   done
 }
 
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+DEFAULT="$(dirname "$SCRIPT_DIR")/default"
+
 ## Root check
 if [ "$(id -u)" = 0 ]; then
   error "This script CAN'T be run as root user!"
   exit 1
 fi
 
-clear
+## Temporary passwordless sudo
+sudo tee /etc/sudoers.d/99-install-nopasswd >/dev/null <<'EOF'
+%wheel ALL=(ALL:ALL) NOPASSWD: ALL
+EOF
+
+## AUR helper
+if confirm "Do you want to install yay?"; then
+  info "Installing yay..."
+  git clone https://aur.archlinux.org/yay-bin.git
+  cd yay-bin
+  makepkg -si --noconfirm
+  rm -rf yay-bin
+fi
+
+## Limine config
+if confirm "Do you want to configure Snapper and Plymouth for Limine?"; then
+  info "Configuring Limine..."
+  mkdir -p /boot/limine-entry-tool.d
+  sudo cp -f "$DEFAULT/limine/limine.conf" /boot/limine.conf
+  sudo cp -f "$DEFAULT/limine-entry-tool.d/defaults.conf" /boot/limine-entry-tool.d/defaults.conf
+
+  sudo pacman -Syy --needed --noconfirm snapper snap-pac plymouth
+  yay -S --needed --noconfirm limine-mkinitcpio-hook limine-snapper-sync
+
+  sudo mkdir -p /etc/mkinitcpio.conf.d
+  sudo cp -f "$DEFAULT/mkinitcpio.conf.d/10-hooks.conf" /etc/mkinitcpio.conf.d/10-hooks.conf
+
+  sudo limine-install
+  sudo limine-install --skip-uefi --fallback
+  sudo limine-update
+
+  # Snapper
+  info "Configuring snapper..."
+  sudo mkdir -p /etc/{snapper/configs,conf.d}
+  sudo cp -f "$DEFAULT/snapper/configs/root" /etc/snapper/configs/root
+  sudo cp -f "$DEFAULT/conf.d/snapper" /etc/conf.d/snapper
+
+  sudo systemctl enable snapper-cleanup.timer limine-snapper-sync.service
+  sudo limine-snapper-sync
+
+  # Plymouth
+  info "Configuring Plymouth..."
+  sudo mkdir -p /usr/share/plymouth/themes/
+  sudo cp -fr "$DEFAULT/plymouth/arch" /usr/share/plymouth/themes/
+  sudo plymouth-set-default-theme arch
+  sudo limine-mkinitcpio
+fi
+
+# LATER: uwsm
 
 ## Packages
-while confirm "Do you want to install system's packages?"; do
+if confirm "Do you want to install system's packages?"; then
   info "Installing pacman packages..."
   sudo pacman -S --needed --noconfirm linux-lts hyprland kitty rofi rofi-calc fish adobe-source-code-pro-fonts nemo nemo-share nemo-fileroller viewnior gimp mpv kdenlive obs-studio gnome-calculator gparted xorg-xhost polkit-gnome hyprlock pipewire pipewire-audio pipewire-jack pipewire-pulse pulsemixer pavucontrol kvantum kvantum-qt5 tela-circle-icon-theme-blue brightnessctl power-profiles-daemon cups powertop cliphist hyprpaper fastfetch btop cava zoxide eza fd stow noto-fonts noto-fonts-cjk noto-fonts-emoji tree fzf ripgrep inetutils imagemagick wf-recorder pacman-contrib fuse2 xdg-user-dirs xdg-desktop-portal-gtk xdg-desktop-portal-hyprland gvfs-mtp 7zip figlet zed pnpm typescript typescript-language-server prettier eslint go go-tools gopls delve python-pip uv ruff nginx docker docker-compose docker-buildx act bash-language-server shellcheck shfmt gdb postgresql valkey
   clear
 
-  info "Installing paru..."
-  git clone https://aur.archlinux.org/paru-bin.git
-  cd paru-bin
-  makepkg -si
-  cd ..
-  rm -rf paru-bin
-  clear
-
   info "Installing AUR packages..."
-  paru -S --needed --noconfirm brave-bin ags-hyprpanel-git arc-gtk-theme simplenote-electron-bin hyprpicker breezex-cursor-theme etcher-bin grimblast-git pipes.sh yaak-bin basedpyright
+  yay -S --needed --noconfirm brave-origin-bin ags-hyprpanel-git arc-gtk-theme simplenote-electron-bin hyprpicker breezex-cursor-theme etcher-bin grimblast-git pipes.sh yaak-bin
   clear
-done
+fi
 
 xdg-user-dirs-update
 
 ## Stow
 if confirm "Do you want to link dotfiles to system files?"; then
-  rm ~/.bash_profile ~/.bashrc
-  mkdir -p ~/.local/share/icons
-  mkdir -p ~/.config/cava
-
   cd dotfiles
-  stow .
+  stow . --adopt
   cd ..
   clear
 fi
 
-# Hidden desktop files
-if confirm "Do you want to set up a hidden desktop files?"; then
-  mkdir -p ~/.local/share/applications
+# # Hidden desktop files
+# if confirm "Do you want to set up a hidden desktop files?"; then
+#   mkdir -p ~/.local/share/applications
+#
+#   list=(avahi-discover.desktop bssh.desktop btop.desktop bvnc.desktop cmake-gui.desktop hp-uiscan.desktop hplip.desktop kvantummanager.desktop qv4l2.desktop qvidcap.desktop lstopo.desktop org.gnome.FileRoller.desktop rofi.desktop rofi-theme-selector.desktop)
+#
+#   for item in "${list[@]}"; do
+#     cp /usr/share/applications/"$item" ~/.local/share/applications/
+#     printf '\nNoDisplay=true\n' >>~/.local/share/applications/"$item"
+#   done
+#
+#   cp /usr/share/applications/cups.desktop ~/.local/share/applications/
+#   sudo chmod 644 ~/.local/share/applications/cups.desktop
+#   printf '\nNoDisplay=true\n' >>~/.local/share/applications/cups.desktop
+# fi
 
-  list=(avahi-discover.desktop bssh.desktop btop.desktop bvnc.desktop cmake-gui.desktop hp-uiscan.desktop hplip.desktop kvantummanager.desktop qv4l2.desktop qvidcap.desktop lstopo.desktop org.gnome.FileRoller.desktop rofi.desktop rofi-theme-selector.desktop)
+# ## QT/GTK
+# if confirm "Do you want to add QT/GTK environment variables?"; then
+#   sudo tee -a /etc/environment >/dev/null <<'EOF'
+# QT_QPA_PLATFORM=wayland
+# QT_QPA_PLATFORMTHEME=qt5ct
+# QT_WAYLAND_DISABLE_WINDOWDECORATION=1
+# QT_AUTO_SCREEN_SCALE_FACTOR=1
+# QT_STYLE_OVERRIDE=kvantum
+# GTK_THEME=Arc-Dark
+# EOF
+#   clear
+# fi
 
-  for item in "${list[@]}"; do
-    cp /usr/share/applications/"$item" ~/.local/share/applications/
-    printf '\nNoDisplay=true\n' >>~/.local/share/applications/"$item"
-  done
+# ## Services
+# info "enabling system services..."
+#
+# sudo systemctl enable --now sshd
+# sudo systemctl enable --now docker.service
+# sudo systemctl enable --now nginx.service
+# sudo systemctl enable --now bluetooth.service
+# sudo systemctl enable --now cups.service
+# sudo usermod -aG docker wm
+# clear
 
-  cp /usr/share/applications/cups.desktop ~/.local/share/applications/
-  sudo chmod 644 ~/.local/share/applications/cups.desktop
-  printf '\nNoDisplay=true\n' >>~/.local/share/applications/cups.desktop
-fi
-
-## tty1
-if confirm "Do you want to skip username on tty1?"; then
-  sudo mkdir -p /etc/systemd/system/getty@tty1.service.d
-  sudo tee /etc/systemd/system/getty@tty1.service.d/skip-username.conf >/dev/null <<'EOF'
-[Service]
-ExecStart=
-ExecStart=-/sbin/agetty -o '-p -- wm' --noclear --skip-login - $TERM
-EOF
-  clear
-fi
-
-## QT/GTK
-if confirm "Do you want to add QT/GTK environment variables?"; then
-  sudo tee -a /etc/environment >/dev/null <<'EOF'
-QT_QPA_PLATFORM=wayland
-QT_QPA_PLATFORMTHEME=qt5ct
-QT_WAYLAND_DISABLE_WINDOWDECORATION=1
-QT_AUTO_SCREEN_SCALE_FACTOR=1
-QT_STYLE_OVERRIDE=kvantum
-GTK_THEME=Arc-Dark
-EOF
-  clear
-fi
-
-## Services
-info "enabling system services..."
-sudo systemctl enable --now docker.service
-sudo systemctl enable --now nginx.service
-sudo systemctl enable --now bluetooth.service
-sudo systemctl enable --now cups.service
-sudo usermod -aG docker wm
-clear
-
-## HP soft-block wifi fix
-if confirm "Do you want to fix wifi soft-block on HP laptop?"; then
-  sudo tee /etc/systemd/system/hp-keycodes.service >/dev/null <<'EOF'
-[Unit]
-Description=HP setkeycodes fix
-
-[Service]
-Type=oneshot
-Restart=no
-RemainAfterExit=no
-ExecStart=/usr/bin/setkeycodes e057 240 e058 240
-
-[Install]
-WantedBy=rescue.target
-WantedBy=multi-user.target
-WantedBy=graphical.target
-EOF
-
-  sudo systemctl daemon-reload
-  sudo systemctl enable --now hp-keycodes.service
-
-  clear
-fi
+# ## HP soft-block wifi fix
+# if confirm "Do you want to fix wifi soft-block on HP laptop?"; then
+#   sudo tee /etc/systemd/system/hp-keycodes.service >/dev/null <<'EOF'
+# [Unit]
+# Description=HP setkeycodes fix
+#
+# [Service]
+# Type=oneshot
+# Restart=no
+# RemainAfterExit=no
+# ExecStart=/usr/bin/setkeycodes e057 240 e058 240
+#
+# [Install]
+# WantedBy=rescue.target
+# WantedBy=multi-user.target
+# WantedBy=graphical.target
+# EOF
+#
+#   sudo systemctl daemon-reload
+#   sudo systemctl enable --now hp-keycodes.service
+#
+#   clear
+# fi
 
 ## Other
-mkdir ~/Projects
-go telemetry off
-uv tool install nginx-language-server
-clear
+# mkdir ~/Projects
+# go telemetry off
+# uv tool install nginx-language-server
+# clear
 
-## Default apps
-if confirm "Do you want to set default apps?"; then
-  # xdg-mime query default [file/extension]
-  # gio mime [file/extension]
-  gsettings set org.cinnamon.desktop.default-applications.terminal exec kitty
-  sudo update-desktop-database
-fi
+# ## Default apps
+# if confirm "Do you want to set default apps?"; then
+#   # xdg-mime query default [file/extension]
+#   # gio mime [file/extension]
+#   gsettings set org.cinnamon.desktop.default-applications.terminal exec kitty
+#   sudo update-desktop-database
+# fi
 
 ## HP printer
 # if confirm "Do you want to configure HP printers?"; then
@@ -176,6 +206,8 @@ fi
 #     QT_QPA_PLATFORM=xcb hp-setup
 #     # Select Network/Wireless (switch printer on)
 # fi
+
+sudo rm -f /etc/sudoers.d/99-install-nopasswd
 
 #   __  __    _    _   _ _   _   _    _
 #  |  \/  |  / \  | \ | | | | | / \  | |
