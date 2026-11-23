@@ -42,6 +42,7 @@ confirm() {
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 DEFAULT="$(dirname "$SCRIPT_DIR")/default"
+ETC="$(dirname "$SCRIPT_DIR")/etc"
 
 ## Root check
 if [ "$(id -u)" = 0 ]; then
@@ -66,15 +67,15 @@ fi
 ## Limine config
 if confirm "Do you want to configure Snapper and Plymouth for Limine?"; then
   info "Configuring Limine..."
-  mkdir -p /boot/limine-entry-tool.d
+  sudo mkdir -p /boot/limine-entry-tool.d
   sudo cp -f "$DEFAULT/limine/limine.conf" /boot/limine.conf
-  sudo cp -f "$DEFAULT/limine-entry-tool.d/defaults.conf" /boot/limine-entry-tool.d/defaults.conf
+  sudo cp -f "$ETC/limine-entry-tool.d/defaults.conf" /etc/limine-entry-tool.d/defaults.conf
 
   sudo pacman -Syy --needed --noconfirm snapper snap-pac plymouth
   yay -S --needed --noconfirm limine-mkinitcpio-hook limine-snapper-sync
 
   sudo mkdir -p /etc/mkinitcpio.conf.d
-  sudo cp -f "$DEFAULT/mkinitcpio.conf.d/10-hooks.conf" /etc/mkinitcpio.conf.d/10-hooks.conf
+  sudo cp -f "$ETC/mkinitcpio.conf.d/00-hooks.conf" /etc/mkinitcpio.conf.d/00-hooks.conf
 
   sudo limine-install
   sudo limine-install --skip-uefi --fallback
@@ -83,8 +84,8 @@ if confirm "Do you want to configure Snapper and Plymouth for Limine?"; then
   # Snapper
   info "Configuring snapper..."
   sudo mkdir -p /etc/{snapper/configs,conf.d}
-  sudo cp -f "$DEFAULT/snapper/configs/root" /etc/snapper/configs/root
-  sudo cp -f "$DEFAULT/conf.d/snapper" /etc/conf.d/snapper
+  sudo cp -f "$ETC/snapper/configs/root" /etc/snapper/configs/root
+  sudo cp -f "$ETC/conf.d/snapper" /etc/conf.d/snapper
 
   sudo systemctl enable snapper-cleanup.timer limine-snapper-sync.service
   sudo limine-snapper-sync
@@ -97,28 +98,67 @@ if confirm "Do you want to configure Snapper and Plymouth for Limine?"; then
   sudo limine-mkinitcpio
 fi
 
+sudo rm -f /etc/sudoers.d/99-install-nopasswd
+
 # LATER: uwsm
 
-## Packages
-if confirm "Do you want to install system's packages?"; then
-  info "Installing pacman packages..."
-  sudo pacman -S --needed --noconfirm linux-lts hyprland kitty rofi rofi-calc fish adobe-source-code-pro-fonts nemo nemo-share nemo-fileroller viewnior gimp mpv kdenlive obs-studio gnome-calculator gparted xorg-xhost polkit-gnome hyprlock pipewire pipewire-audio pipewire-jack pipewire-pulse pulsemixer pavucontrol kvantum kvantum-qt5 tela-circle-icon-theme-blue brightnessctl power-profiles-daemon cups powertop cliphist hyprpaper fastfetch btop cava zoxide eza fd stow noto-fonts noto-fonts-cjk noto-fonts-emoji tree fzf ripgrep inetutils imagemagick wf-recorder pacman-contrib fuse2 xdg-user-dirs xdg-desktop-portal-gtk xdg-desktop-portal-hyprland gvfs-mtp 7zip figlet zed pnpm typescript typescript-language-server prettier eslint go go-tools gopls delve python-pip uv ruff nginx docker docker-compose docker-buildx act bash-language-server shellcheck shfmt gdb postgresql valkey
-  clear
-
-  info "Installing AUR packages..."
-  yay -S --needed --noconfirm brave-origin-bin ags-hyprpanel-git arc-gtk-theme simplenote-electron-bin hyprpicker breezex-cursor-theme etcher-bin grimblast-git pipes.sh yaak-bin
-  clear
-fi
-
-xdg-user-dirs-update
-
-## Stow
-if confirm "Do you want to link dotfiles to system files?"; then
-  cd dotfiles
-  stow . --adopt
-  cd ..
-  clear
-fi
+# ## Packages
+# if confirm "Do you want to install system's packages?"; then
+#   info "Installing pacman packages..."
+#   # Desktop / Wayland
+#   desktop=(hyprland *hyprlock *hyprpaper *cliphist *wf-recorder brightnessctl
+#     xdg-xdg-terminal-exec xdg-desktop-portal-gtk xdg-desktop-portal-hyprland xorg-xhost *polkit-gnome)
+#
+#   # Terminals / shell
+#   shell=(kitty foot zsh zoxide eza fd fzf ripgrep tree stow figlet inetutils)
+#
+#   # Fonts
+#   fonts=(adobe-source-code-pro-fonts noto-fonts noto-fonts-cjk noto-fonts-emoji)
+#
+#   # Theming
+#   theme=(*kvantum *kvantum-qt5 tela-circle-icon-theme-blue)
+#
+#   # Audio
+#   audio=(pipewire pipewire-audio pipewire-jack pipewire-pulse *pulsemixer *pavucontrol cava)
+#
+#   # Files / system utilities
+#   system=(nautilus gvfs-mtp gparted gnome-calculator 7zip fuse2 xdg-user-dirs
+#     pacman-contrib fastfetch btop)
+#
+#   # Power / printing
+#   power=(power-profiles-daemon powertop cups)
+#
+#   # Media / graphics
+#   media=(imv imagemagick gimp mpv yt-dlp kdenlive obs-studio zbar)
+#
+#   # Dev
+#   dev=(zed
+#     pnpm typescript typescript-language-server prettier eslint
+#     go go-tools gopls delve
+#     python-pip uv ruff
+#     bash-language-server shellcheck shfmt gdb
+#     docker docker-compose docker-buildx act
+#     nginx postgresql valkey)
+#
+#   sudo pacman -S --needed --noconfirm \
+#     "${desktop[@]}" "${shell[@]}" "${fonts[@]}" "${theme[@]}" "${audio[@]}" \
+#     "${system[@]}" "${power[@]}" "${media[@]}" "${dev[@]}"
+#   clear
+#
+#   info "Installing AUR packages..."
+#   yay -S --needed --noconfirm brave-origin-bin ags-hyprpanel-git arc-gtk-theme simplenote-electron-bin hyprpicker breezex-cursor-theme etcher-bin grimblast-git pipes.sh yaak-bin
+#   clear
+# fi
+#
+# xdg-user-dirs-update
+#
+# ## Stow
+# if confirm "Do you want to link dotfiles to system files?"; then
+#   cd dotfiles
+#   stow . --adopt
+#   cd ..
+#   clear
+# fi
 
 # # Hidden desktop files
 # if confirm "Do you want to set up a hidden desktop files?"; then
@@ -206,8 +246,6 @@ fi
 #     QT_QPA_PLATFORM=xcb hp-setup
 #     # Select Network/Wireless (switch printer on)
 # fi
-
-sudo rm -f /etc/sudoers.d/99-install-nopasswd
 
 #   __  __    _    _   _ _   _   _    _
 #  |  \/  |  / \  | \ | | | | | / \  | |

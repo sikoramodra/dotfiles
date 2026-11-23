@@ -1,4 +1,4 @@
-# Omarchy Plymouth Theme Script
+# Arch Plymouth Theme Script
 
 Window.SetBackgroundTopColor(0.157, 0.173, 0.204);
 Window.SetBackgroundBottomColor(0.157, 0.173, 0.204);

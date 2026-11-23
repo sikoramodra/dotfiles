@@ -1,0 +1,4 @@
+[settings]
+locked_scopes = ["project", "global"]
+system_installs_dir = "~/.local/share/mise/installs"
+system_shims_dir = "~/.local/share/mise/shims"
